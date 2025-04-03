@@ -110,9 +110,6 @@ If you’re still unsure after looking at the files and the IDE, check the proje
 1. Original pom.xml (Before Adding TestNG)
 This is how your original pom.xml looks before adding the TestNG dependency:
 
-xml
-Copy
-Edit
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -138,9 +135,6 @@ The file is set up for a basic Maven project with compiler settings but does not
 2. Updated pom.xml (After Adding TestNG)
 Here’s how your pom.xml will look after adding the TestNG dependency in the <dependencies> section:
 
-xml
-Copy
-Edit
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -167,12 +161,14 @@ Edit
         </dependency>
     </dependencies>
 </project>
+
 Key Changes:
 Addition of the <dependencies> section:
 
 This was not present in the original pom.xml file.
 
 The <dependencies> section is where you specify all external libraries (such as TestNG) that your project depends on.
+
 3. **Sync Maven**:
    - After adding the dependency, refresh your Maven project to download TestNG.
    - In IntelliJ IDEA, click on the **Maven** tool window (right side) and click **Refresh**.
