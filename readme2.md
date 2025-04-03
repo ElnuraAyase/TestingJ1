@@ -107,7 +107,72 @@ If you’re still unsure after looking at the files and the IDE, check the proje
        </dependency>
    </dependencies>
    ```
+1. Original pom.xml (Before Adding TestNG)
+This is how your original pom.xml looks before adding the TestNG dependency:
 
+xml
+Copy
+Edit
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>Calculator_Task</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+</project>
+In this file:
+
+There is no <dependencies> section yet.
+
+The file is set up for a basic Maven project with compiler settings but does not include any dependencies for libraries such as TestNG.
+
+2. Updated pom.xml (After Adding TestNG)
+Here’s how your pom.xml will look after adding the TestNG dependency in the <dependencies> section:
+
+xml
+Copy
+Edit
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>Calculator_Task</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- TestNG Dependency -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.7.0</version> <!-- Or the latest version -->
+            <scope>test</scope> <!-- This means it's only needed for testing -->
+        </dependency>
+    </dependencies>
+</project>
+Key Changes:
+Addition of the <dependencies> section:
+
+This was not present in the original pom.xml file.
+
+The <dependencies> section is where you specify all external libraries (such as TestNG) that your project depends on.
 3. **Sync Maven**:
    - After adding the dependency, refresh your Maven project to download TestNG.
    - In IntelliJ IDEA, click on the **Maven** tool window (right side) and click **Refresh**.
