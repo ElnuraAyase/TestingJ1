@@ -354,8 +354,60 @@ public class CalculatorApp {
 }
 ```
 
+🧠 BONUS: 10 Examples (Calculator and Non-Calculator Projects)
+✅ 1. Banking System: Encapsulation and Data Protection
+Without OOP:
+java
+Copy
+Edit
+public class BankingSystem {
+    static double balance = 1000;
 
-Apologies for the oversight! Here are **all 10 examples** as requested, along with detailed comments and explanations. This set includes examples for **encapsulation, inheritance, polymorphism, abstraction**, and **overloading** in various scenarios, all with clear comments explaining their use and benefits.
+    public static void withdraw(double amount) {
+        if (balance >= amount) {
+            balance -= amount;
+            System.out.println("Withdrawn " + amount + ", remaining balance is " + balance);
+        } else {
+            System.out.println("Insufficient balance");
+        }
+    }
+
+    public static void main(String[] args) {
+        withdraw(200);
+        System.out.println("Balance after withdrawal: " + balance);
+    }
+}
+With OOP:
+java
+Copy
+Edit
+public class BankAccount {
+    private double balance;
+
+    public BankAccount(double initialBalance) {
+        this.balance = initialBalance;
+    }
+
+    public void withdraw(double amount) {
+        if (balance >= amount) {
+            balance -= amount;
+            System.out.println("Withdrawn " + amount + ", remaining balance is " + balance);
+        } else {
+            System.out.println("Insufficient balance");
+        }
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public static void main(String[] args) {
+        BankAccount account = new BankAccount(1000);
+        account.withdraw(200);
+        System.out.println("Balance after withdrawal: " + account.getBalance());
+    }
+}
+
 
 ---
 
