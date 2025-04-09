@@ -320,11 +320,11 @@ public class LoggingCalculator {
 ---
 
 
-🔁 4. POLYMORPHISM
-📘 Explanation:
+## 🔁 4. POLYMORPHISM
+### 📘 Explanation:
 Polymorphism allows you to use one method or class name with different behaviors depending on the object type. It provides flexibility and the ability to extend code without altering its structure.
 
-✅ WITH POLYMORPHISM (Calculator App)
+### ✅ WITH POLYMORPHISM (Calculator App)
 Example 1: Shared interface, different results
 java
 Copy
@@ -395,67 +395,8 @@ public class Calculator {
 }
 ➡️ Effect: Without polymorphism, you would need separate methods for each operation. Polymorphism allows you to reuse methods, making the code cleaner and more extensible.
 
-🧠 BONUS: 2 Extra Examples (Non-Calculator Projects)
-🏪 E-commerce App: Product Abstraction
-java
-Copy
-Edit
+## 🧠 BONUS: 2 Extra Examples (Non-Calculator Projects)
 
-✅ 1. Banking System: Encapsulation and Data Protection
-Without OOP:
-java
-Copy
-Edit
-public class BankingSystem {
-    static double balance = 1000;
-
-    public static void withdraw(double amount) {
-        if (balance >= amount) {
-            balance -= amount;
-            System.out.println("Withdrawn " + amount + ", remaining balance is " + balance);
-        } else {
-            System.out.println("Insufficient balance");
-        }
-    }
-
-    public static void main(String[] args) {
-        withdraw(200);
-        System.out.println("Balance after withdrawal: " + balance);
-    }
-}
-With OOP:
-java
-Copy
-Edit
-public class BankAccount {
-    private double balance;
-
-    public BankAccount(double initialBalance) {
-        this.balance = initialBalance;
-    }
-
-    public void withdraw(double amount) {
-        if (balance >= amount) {
-            balance -= amount;
-            System.out.println("Withdrawn " + amount + ", remaining balance is " + balance);
-        } else {
-            System.out.println("Insufficient balance");
-        }
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public static void main(String[] args) {
-        BankAccount account = new BankAccount(1000);
-        account.withdraw(200);
-        System.out.println("Balance after withdrawal: " + account.getBalance());
-    }
-}
-
-
----
 
 ### ✅ **1. Banking System: Encapsulation and Data Protection**
 
