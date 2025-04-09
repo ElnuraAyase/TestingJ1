@@ -355,7 +355,7 @@ public class CalculatorApp {
 ```
 
 
-## 🧠 **BONUS: 10 Extra Examples (Non-Calculator Projects)**
+## 🧠 **BONUS: 6 Extra Examples (Non-Calculator Projects)**
 
 ---
 
