@@ -319,42 +319,88 @@ public class LoggingCalculator {
 
 ---
 
-## 🔁 4. POLYMORPHISM
 
-### 📘 Explanation:
-Polymorphism allows you to use one method or class name with different behavior depending on the object type. It allows flexibility and cleaner code by enabling objects of different types to be treated as instances of the same class through a shared interface.
+🔁 4. POLYMORPHISM
+📘 Explanation:
+Polymorphism allows you to use one method or class name with different behaviors depending on the object type. It provides flexibility and the ability to extend code without altering its structure.
 
----
-
-### ✅ WITH POLYMORPHISM (Calculator App)
-
-#### Example 1: Shared interface, different results
-```java
-class
-
- Division extends Operation {
+✅ WITH POLYMORPHISM (Calculator App)
+Example 1: Shared interface, different results
+java
+Copy
+Edit
+class Division extends Operation {
     @Override
     public double execute(double a, double b) {
-        return b == 0 ? Double.NaN : a / b;  // Different behavior based on input
+        return b == 0 ? Double.NaN : a / b;  // Handle division by zero
     }
 }
-```
-
-#### ❌ WITHOUT POLYMORPHISM - Example 1
-```java
-// Without polymorphism, each operation would need to be handled separately
-public class CalculatorApp {
-    public static double divide(double a, double b) {
+❌ WITHOUT POLYMORPHISM - Example 1
+java
+Copy
+Edit
+public class Calculator {
+    public double divide(double a, double b) {
         if (b == 0) {
-            return Double.NaN;  // Handle division by zero directly
-        } else {
-            return a / b;
+            return Double.NaN;  // Handle division by zero
+        }
+        return a / b;  // Direct division method, no polymorphism
+    }
+}
+Example 2: Loop through operations
+java
+Copy
+Edit
+public class Main {
+    public static void main(String[] args) {
+        Operation[] ops = {
+            new Addition(), new Subtraction(), new Division()
+        };
+
+        for (Operation op : ops) {
+            System.out.println(op.execute(10, 5));  // Polymorphism: Same method, different behavior
         }
     }
 }
-```
+❌ WITHOUT POLYMORPHISM - Example 2
+java
+Copy
+Edit
+public class CalculatorApp {
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        System.out.println(calc.add(10, 5));  // Add operation
+        System.out.println(calc.subtract(10, 5));  // Subtract operation
+        System.out.println(calc.divide(10, 5));  // Divide operation
+    }
+}
+Example 3: Override in child class
+java
+Copy
+Edit
+class FancyCalculator extends BasicCalculator {
+    @Override
+    public double add(double a, double b) {
+        return super.add(a, b) + 0.001;  // Custom behavior for addition, overriding the base method
+    }
+}
+❌ WITHOUT POLYMORPHISM - Example 3
+java
+Copy
+Edit
+public class Calculator {
+    public double add(double a, double b) {
+        return a + b;  // Basic addition, no polymorphism or custom behavior
+    }
+}
+➡️ Effect: Without polymorphism, you would need separate methods for each operation. Polymorphism allows you to reuse methods, making the code cleaner and more extensible.
 
-🧠 BONUS: 10 Examples (Calculator and Non-Calculator Projects)
+🧠 BONUS: 2 Extra Examples (Non-Calculator Projects)
+🏪 E-commerce App: Product Abstraction
+java
+Copy
+Edit
+
 ✅ 1. Banking System: Encapsulation and Data Protection
 Without OOP:
 java
