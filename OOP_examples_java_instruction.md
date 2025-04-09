@@ -1019,6 +1019,127 @@ public class StringUtils {
 - **Effect**: This reduces the need for creating multiple methods, improves **code reusability**, and keeps the code compact.
 
 ---
+Got it! Let’s continue the string manipulation example and then build on the idea by introducing an example for **overloading methods with different input types** and demonstrating both **with and without polymorphism** for the `calculate` method.
+
+---
+
+### **Example 11: Overloading Methods with Different Input Types**
+
+Let's start with an example where we have an overloaded `calculate` method that works with different input types (i.e., `double` and `int`) and returns different output types (i.e., `double` for the `double` input and `int` for the `int` input).
+
+#### **Without Polymorphism: Overloading for Different Input Types**
+
+```java
+public class Calculator {
+    // Method for calculating with double input
+    public static double calculate(double number) {
+        return number * number;  // Square the number (example for double input)
+    }
+
+    // Method for calculating with int input
+    public static int calculate(int number) {
+        return number * number;  // Square the number (example for int input)
+    }
+
+    public static void main(String[] args) {
+        double resultDouble = calculate(5.5);  // Calculate with a double
+        int resultInt = calculate(5);         // Calculate with an int
+
+        System.out.println("Result for double input: " + resultDouble);
+        System.out.println("Result for int input: " + resultInt);
+    }
+}
+```
+
+#### **Explanation:**
+- The `calculate` method is overloaded to work with both `double` and `int` inputs.
+- The return type differs between the two methods: `double` for `double` input and `int` for `int` input.
+- **Downside**: If we want to handle other data types (e.g., `float`, `long`), we would need to add more overloaded methods, which can lead to a large number of method definitions.
+
+---
+
+### **Example 12: Overloading with Polymorphism**
+
+Now let’s refactor this using **polymorphism** to handle different data types (without overloading).
+
+#### **With Polymorphism: Using Inheritance and Method Overriding**
+
+```java
+// Abstract class for Calculator
+abstract class Calculator {
+    public abstract double calculate();  // Abstract method to calculate
+}
+
+// Class for calculating with double
+class DoubleCalculator extends Calculator {
+    private double number;
+
+    public DoubleCalculator(double number) {
+        this.number = number;
+    }
+
+    @Override
+    public double calculate() {
+        return number * number;  // Square the number (example for double input)
+    }
+}
+
+// Class for calculating with int
+class IntCalculator extends Calculator {
+    private int number;
+
+    public IntCalculator(int number) {
+        this.number = number;
+    }
+
+    @Override
+    public double calculate() {
+        return number * number;  // Square the number (example for int input)
+    }
+}
+
+public class PolymorphismCalculator {
+
+    public static void main(String[] args) {
+        // Creating objects for both IntCalculator and DoubleCalculator
+        Calculator doubleCalc = new DoubleCalculator(5.5);
+        Calculator intCalc = new IntCalculator(5);
+
+        // Calling the calculate method (polymorphism in action)
+        System.out.println("Result for double input: " + doubleCalc.calculate());
+        System.out.println("Result for int input: " + intCalc.calculate());
+    }
+}
+```
+
+#### **Explanation:**
+- We use **polymorphism** by creating an abstract `Calculator` class with an abstract `calculate` method.
+- There are two subclasses: `DoubleCalculator` and `IntCalculator`, each implementing the `calculate` method.
+  - `DoubleCalculator` works with a `double` value.
+  - `IntCalculator` works with an `int` value.
+- **Polymorphism in Action**: In the `main` method, we use the `Calculator` reference to point to instances of `DoubleCalculator` and `IntCalculator`. When we call the `calculate` method, the correct version of `calculate` is called based on the actual object type.
+
+#### **Advantages of Polymorphism:**
+- **Scalability**: If you want to add more types of calculations (e.g., for `float`, `long`, etc.), you can create new subclasses of `Calculator`, and no changes are needed in the existing code.
+- **Maintainability**: The logic is centralized, and we don’t need to keep adding overloaded methods for each new data type.
+
+---
+
+### **Comparison of Overloading vs Polymorphism**
+
+| **Aspect**                     | **Without Polymorphism (Overloading)**                    | **With Polymorphism (Inheritance + Overriding)**          |
+|---------------------------------|-----------------------------------------------------------|-----------------------------------------------------------|
+| **Code Structure**              | Multiple methods for different input types (overloading). | One method (`calculate`) in the base class, overridden in subclasses. |
+| **Flexibility**                 | Each new data type requires a new overloaded method.      | To add new types, you just create new subclasses.          |
+| **Scalability**                 | Adding new types requires modifying the class (adding more overloads). | Easy to extend by adding new subclasses for new types.     |
+| **Maintainability**             | Overloaded methods can lead to code duplication and become cumbersome. | Easier to maintain as logic is separated into subclasses.  |
+| **Code Reusability**            | Low, as each data type requires its own method signature. | High, as subclasses can reuse logic from the base class.   |
+
+---
+
+### **Summary:**
+- **Without Polymorphism (Overloading)**: This works well for a small number of different input types but can become unwieldy as you need to add more methods for each new data type.
+- **With Polymorphism (Inheritance and Method Overriding)**: This approach is much more flexible and scalable. It allows you to easily add new types (e.g., `float`, `long`, etc.) without modifying the existing code, which promotes cleaner, maintainable code.
 
 ---
 
