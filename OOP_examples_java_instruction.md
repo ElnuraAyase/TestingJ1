@@ -326,19 +326,17 @@ Polymorphism allows you to use one method or class name with different behaviors
 
 ### ✅ WITH POLYMORPHISM (Calculator App)
 Example 1: Shared interface, different results
-java
-Copy
-Edit
+```java
 class Division extends Operation {
     @Override
     public double execute(double a, double b) {
         return b == 0 ? Double.NaN : a / b;  // Handle division by zero
     }
 }
-❌ WITHOUT POLYMORPHISM - Example 1
-java
-Copy
-Edit
+```
+#### ❌ WITHOUT POLYMORPHISM - Example 1
+```java
+
 public class Calculator {
     public double divide(double a, double b) {
         if (b == 0) {
@@ -347,10 +345,10 @@ public class Calculator {
         return a / b;  // Direct division method, no polymorphism
     }
 }
-Example 2: Loop through operations
-java
-Copy
-Edit
+```
+#### Example 2: Loop through operations
+```java
+
 public class Main {
     public static void main(String[] args) {
         Operation[] ops = {
@@ -362,10 +360,9 @@ public class Main {
         }
     }
 }
-❌ WITHOUT POLYMORPHISM - Example 2
-java
-Copy
-Edit
+```
+#### ❌ WITHOUT POLYMORPHISM - Example 2
+```java
 public class CalculatorApp {
     public static void main(String[] args) {
         Calculator calc = new Calculator();
@@ -374,18 +371,19 @@ public class CalculatorApp {
         System.out.println(calc.divide(10, 5));  // Divide operation
     }
 }
-Example 3: Override in child class
-java
-Copy
-Edit
+``` 
+#### Example 3: Override in child class
+```java
+
 class FancyCalculator extends BasicCalculator {
     @Override
     public double add(double a, double b) {
         return super.add(a, b) + 0.001;  // Custom behavior for addition, overriding the base method
     }
 }
-❌ WITHOUT POLYMORPHISM - Example 3
-java
+```
+#### ❌ WITHOUT POLYMORPHISM - Example 3
+```java
 Copy
 Edit
 public class Calculator {
@@ -393,9 +391,11 @@ public class Calculator {
         return a + b;  // Basic addition, no polymorphism or custom behavior
     }
 }
-➡️ Effect: Without polymorphism, you would need separate methods for each operation. Polymorphism allows you to reuse methods, making the code cleaner and more extensible.
+```
 
-## 🧠 BONUS: 2 Extra Examples (Non-Calculator Projects)
+#### ➡️ Effect: Without polymorphism, you would need separate methods for each operation. Polymorphism allows you to reuse methods, making the code cleaner and more extensible.
+
+## 🧠 BONUS: 10 Extra Examples (Non-Calculator Projects)
 
 
 ### ✅ **1. Banking System: Encapsulation and Data Protection**
