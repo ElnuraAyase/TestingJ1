@@ -355,7 +355,7 @@ public class CalculatorApp {
 ```
 
 
-## 🧠 **BONUS: 6 Extra Examples (Non-Calculator Projects)**
+## 🧠 **BONUS: 10 Extra Examples (Non-Calculator Projects)**
 
 ---
 
@@ -649,6 +649,146 @@ discounted_invoice = DiscountedInvoice()  # Create a discounted invoice object
 print("Standard Invoice Total:", standard_invoice.calculate_total(100, 0.15))  # Standard invoice total
 print("Discounted Invoice Total:", discounted_invoice.calculate_total(100, 0.15))  # Discounted invoice total
 ```
+✅ 🔢 Calculator App: Overloading the Add Method (Polymorphism)
+Without OOP:
+python
+Copy
+Edit
+# Without OOP - No Overloading
+def add(a, b):
+    return a + b  # Addition of two numbers
+
+# Add two numbers
+print("Sum of 5 and 3:", add(5, 3))  # Add two integers
+print("Sum of 2.5 and 3.5:", add(2.5, 3.5))  # Add two floating point numbers
+With OOP (Overloading):
+python
+Copy
+Edit
+# With OOP - Overloading the Add Method (Polymorphism)
+class Calculator:
+    def add(self, a, b):
+        # Check if both numbers are integers
+        if isinstance(a, int) and isinstance(b, int):
+            return a + b  # Add integers
+        # Check if both numbers are floats
+        elif isinstance(a, float) and isinstance(b, float):
+            return a + b  # Add floats
+        else:
+            return "Invalid input, both arguments must be numbers"  # Error message for invalid input
+
+# Create a Calculator object
+calc = Calculator()
+
+# Call add method with different types of inputs (overloading via method signature)
+print("Sum of 5 and 3:", calc.add(5, 3))  # Add two integers
+print("Sum of 2.5 and 3.5:", calc.add(2.5, 3.5))  # Add two floating point numbers
+print("Invalid add:", calc.add(5, "hello"))  # Invalid input
+✅ 💻 Library System: Overloading the Search Method (Polymorphism)
+Without OOP:
+python
+Copy
+Edit
+# Without OOP - No Overloading
+def search_item(item):
+    if isinstance(item, str):  # Searching by title (string)
+        print(f"Searching by title: {item}")
+    elif isinstance(item, int):  # Searching by ID (integer)
+        print(f"Searching by ID: {item}")
+    else:
+        print("Invalid input")
+
+# Search using title and ID
+search_item("The Great Gatsby")  # Search by title
+search_item(101)  # Search by ID
+With OOP (Overloading):
+python
+Copy
+Edit
+# With OOP - Overloading the Search Method (Polymorphism)
+class Library:
+    def search(self, query):
+        # Search by title (string)
+        if isinstance(query, str):
+            return f"Searching for book with title: {query}"
+        # Search by ID (integer)
+        elif isinstance(query, int):
+            return f"Searching for book with ID: {query}"
+        else:
+            return "Invalid query type, please use title or ID"
+
+# Create a Library object
+library = Library()
+
+# Call search method with different types of queries (overloading via method signature)
+print(library.search("The Great Gatsby"))  # Search by title
+print(library.search(101))  # Search by ID
+print(library.search(25.5))  # Invalid query
+✅ 🧮 Calculator App: Addition and Subtraction Overloading
+Without OOP:
+python
+Copy
+Edit
+# Without OOP - No Overloading
+def add(a, b):
+    return a + b  # Add two numbers
+
+def subtract(a, b):
+    return a - b  # Subtract two numbers
+
+# Add and subtract numbers
+print("Addition of 5 and 3:", add(5, 3))  # Add two numbers
+print("Subtraction of 5 and 3:", subtract(5, 3))  # Subtract two numbers
+With OOP (Overloading for Addition and Subtraction):
+python
+Copy
+Edit
+# With OOP - Overloading Addition and Subtraction (Polymorphism)
+class Calculator:
+    def calculate(self, a, b, operation):
+        if operation == "add":
+            return a + b  # Add numbers
+        elif operation == "subtract":
+            return a - b  # Subtract numbers
+        else:
+            return "Invalid operation"  # Handle invalid operation
+
+# Create a Calculator object
+calc = Calculator()
+
+# Call calculate method for addition and subtraction
+print("Addition of 5 and 3:", calc.calculate(5, 3, "add"))  # Add numbers
+print("Subtraction of 5 and 3:", calc.calculate(5, 3, "subtract"))  # Subtract numbers
+✅ 🍕 Food Ordering System: Overloading the Order Method (Polymorphism)
+Without OOP:
+python
+Copy
+Edit
+# Without OOP - No Overloading
+def order_food(food_type, quantity):
+    print(f"Ordering {quantity} {food_type}(s)")
+
+# Order food with different quantities
+order_food("pizza", 2)  # Order 2 pizzas
+order_food("burger", 3)  # Order 3 burgers
+With OOP (Overloading):
+python
+Copy
+Edit
+# With OOP - Overloading the Order Method (Polymorphism)
+class FoodOrder:
+    def order(self, food_type, quantity=1):  # Default quantity is 1
+        if quantity == 1:
+            print(f"Ordering 1 {food_type}")
+        else:
+            print(f"Ordering {quantity} {food_type}s")
+
+# Create a FoodOrder object
+order = FoodOrder()
+
+# Call order method with different quantities (overloading via default argument)
+order.order("pizza")  # Order 1 pizza
+order.order("burger", 3)  # Order 3 burgers
 
 ---
 
