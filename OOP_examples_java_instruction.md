@@ -355,300 +355,631 @@ public class CalculatorApp {
 ```
 
 
-## 🧠 **BONUS: 6 Extra Examples (Non-Calculator Projects)**
+Apologies for the oversight! Here are **all 10 examples** as requested, along with detailed comments and explanations. This set includes examples for **encapsulation, inheritance, polymorphism, abstraction**, and **overloading** in various scenarios, all with clear comments explaining their use and benefits.
 
 ---
 
-### ✅ **🏦 Banking System: Encapsulation and Data Protection**
+### ✅ **1. Banking System: Encapsulation and Data Protection**
 
-#### Without OOP:
+#### **Without OOP:**
 
-```python
-# Without OOP - No Encapsulation
-balance = 1000  # global account balance
+```java
+public class BankingSystem {
+    static double balance = 1000;  // Static balance shared across all methods
 
-# Function to withdraw money
-def withdraw(amount):
-    global balance  # Directly modifying the global balance
-    if balance >= amount:
-        balance -= amount  # Deduct the amount from balance
-        print(f"Withdrawn {amount}, remaining balance is {balance}")
-    else:
-        print("Insufficient balance")  # Error if not enough balance
+    // Withdraws money from the balance
+    public static void withdraw(double amount) {
+        if (balance >= amount) {
+            balance -= amount;
+            System.out.println("Withdrawn " + amount + ", remaining balance is " + balance);
+        } else {
+            System.out.println("Insufficient balance");
+        }
+    }
 
-# Withdraw money
-withdraw(200)  # Withdraw $200
-print("Balance after withdrawal:", balance)  # Show remaining balance
+    public static void main(String[] args) {
+        withdraw(200);  // Calling the withdraw method
+        System.out.println("Balance after withdrawal: " + balance);  // Direct access to balance variable
+    }
+}
 ```
 
-#### With OOP:
+**Explanation:**
+- **Without OOP**: The balance is directly manipulated, and methods aren't encapsulated in a class. If you need to change the balance logic, you have to modify it everywhere.
+- **Effect**: It lacks data protection and makes it difficult to extend or change the logic for different accounts.
 
-```python
-# With OOP - Encapsulation
-class BankAccount:
-    def __init__(self, balance):
-        self.__balance = balance  # private attribute, cannot be accessed directly
+#### **With OOP:**
 
-    def withdraw(self, amount):
-        if self.__balance >= amount:
-            self.__balance -= amount  # Deduct the amount from the private balance
-            print(f"Withdrawn {amount}, remaining balance is {self.__balance}")
-        else:
-            print("Insufficient balance")  # Error if not enough balance
+```java
+public class BankAccount {
+    private double balance;  // Encapsulating balance to protect it
 
-    def get_balance(self):
-        return self.__balance  # Public method to safely access the balance
+    // Constructor to initialize balance
+    public BankAccount(double initialBalance) {
+        this.balance = initialBalance;
+    }
 
-# Create a BankAccount object with $1000 balance
-account = BankAccount(1000)
+    // Withdraw method to ensure proper access to balance
+    public void withdraw(double amount) {
+        if (balance >= amount) {
+            balance -= amount;
+            System.out.println("Withdrawn " + amount + ", remaining balance is " + balance);
+        } else {
+            System.out.println("Insufficient balance");
+        }
+    }
 
-# Withdraw money
-account.withdraw(200)  # Withdraw $200
-print("Balance after withdrawal:", account.get_balance())  # Access balance through a getter
+    // Getter method to access balance (encapsulation)
+    public double getBalance() {
+        return balance;
+    }
+
+    public static void main(String[] args) {
+        BankAccount account = new BankAccount(1000);  // Creating an object of BankAccount
+        account.withdraw(200);  // Calling withdraw on the object
+        System.out.println("Balance after withdrawal: " + account.getBalance());  // Accessing balance via getter
+    }
+}
 ```
+
+**Explanation:**
+- **With OOP**: We encapsulate the balance with private access and only expose necessary methods to modify or access it (like `withdraw` and `getBalance`).
+- **Effect**: This provides data protection and flexibility. You can change internal logic without affecting external code.
 
 ---
 
-### ✅ **🏠 Real Estate App: Abstraction of Property Types**
+### ✅ **2. Real Estate App: Abstraction of Property Types**
 
-#### Without OOP:
+#### **Without OOP:**
 
-```python
-# Without OOP - No Abstraction
-def calculate_area(property_type, *params):
-    if property_type == "house":
-        return params[0] * params[1]  # length * width for house
-    elif property_type == "apartment":
-        return params[0] * params[1]  # length * width for apartment
-    else:
-        return "Unknown property type"  # Invalid property type
+```java
+public class RealEstateApp {
+    public static double calculateArea(String propertyType, double length, double width) {
+        if (propertyType.equals("house")) {
+            return length * width;  // House area
+        } else if (propertyType.equals("apartment")) {
+            return length * width;  // Apartment area
+        } else {
+            return 0;  // Default case
+        }
+    }
 
-# Calculate area for different property types
-print("House Area:", calculate_area("house", 10, 20))  # Calculate area for house (10x20)
-print("Apartment Area:", calculate_area("apartment", 15, 10))  # Calculate area for apartment (15x10)
+    public static void main(String[] args) {
+        System.out.println("House Area: " + calculateArea("house", 10, 20));
+        System.out.println("Apartment Area: " + calculateArea("apartment", 15, 10));
+    }
+}
 ```
 
-#### With OOP:
+**Explanation:**
+- **Without OOP**: The logic for calculating areas is embedded in a single method, making it hard to extend for other property types (like commercial buildings).
+- **Effect**: Adding more property types will require modifying the method every time, violating the **Open/Closed Principle**.
 
-```python
-# With OOP - Abstraction
-import abc  # Importing the abstract base class module
+#### **With OOP:**
 
-class Property(abc.ABC):  # Abstract base class (abstract class)
-    @abc.abstractmethod
-    def calculate_area(self):  # Abstract method that must be implemented by subclasses
-        pass
+```java
+abstract class Property {
+    public abstract double calculateArea();  // Abstract method to calculate area
+}
 
-class House(Property):
-    def __init__(self, length, width):
-        self.length = length  # Initialize length
-        self.width = width    # Initialize width
+class House extends Property {
+    private double length;
+    private double width;
 
-    def calculate_area(self):
-        return self.length * self.width  # Calculate area for house
+    public House(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
 
-class Apartment(Property):
-    def __init__(self, length, width):
-        self.length = length  # Initialize length
-        self.width = width    # Initialize width
+    @Override
+    public double calculateArea() {
+        return length * width;  // Specific calculation for House
+    }
+}
 
-    def calculate_area(self):
-        return self.length * self.width  # Calculate area for apartment
+class Apartment extends Property {
+    private double length;
+    private double width;
 
-# Create property objects for house and apartment
-house = House(10, 20)  # Create a House object with dimensions 10x20
-apartment = Apartment(15, 10)  # Create an Apartment object with dimensions 15x10
+    public Apartment(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
 
-# Calculate area using the `calculate_area()` method defined in each class
-print("House Area:", house.calculate_area())  # Get area for house
-print("Apartment Area:", apartment.calculate_area())  # Get area for apartment
+    @Override
+    public double calculateArea() {
+        return length * width;  // Specific calculation for Apartment
+    }
+}
+
+public class RealEstateApp {
+    public static void main(String[] args) {
+        Property house = new House(10, 20);  // Creating a House object
+        Property apartment = new Apartment(15, 10);  // Creating an Apartment object
+
+        System.out.println("House Area: " + house.calculateArea());
+        System.out.println("Apartment Area: " + apartment.calculateArea());
+    }
+}
 ```
+
+**Explanation:**
+- **With OOP**: The **Property** class is abstract, and specific property types (House, Apartment) extend it and provide their own implementation of `calculateArea()`.
+- **Effect**: This allows for easy extension with more property types without modifying existing code. It's more flexible and follows **the Open/Closed Principle**.
 
 ---
 
-### ✅ **🎮 Game App: Character Inheritance and Polymorphism**
+### ✅ **3. Game App: Character Inheritance and Polymorphism**
 
-#### Without OOP:
+#### **Without OOP:**
 
-```python
-# Without OOP - No Inheritance/Polymorphism
-def attack(character_type):
-    if character_type == "warrior":
-        print("Warrior slashes!")  # Warrior-specific attack
-    elif character_type == "mage":
-        print("Mage casts spell!")  # Mage-specific attack
-    else:
-        print("Character attacks")  # General attack
+```java
+public class GameApp {
+    public static void attack(String characterType) {
+        if (characterType.equals("warrior")) {
+            System.out.println("Warrior slashes!");  // Warrior attack
+        } else if (characterType.equals("mage")) {
+            System.out.println("Mage casts spell!");  // Mage attack
+        } else {
+            System.out.println("Character attacks");
+        }
+    }
 
-# Attack with different characters
-attack("warrior")  # Warrior's attack
-attack("mage")  # Mage's attack
+    public static void main(String[] args) {
+        attack("warrior");  // Calling attack for Warrior
+        attack("mage");  // Calling attack for Mage
+    }
+}
 ```
 
-#### With OOP:
+**Explanation:**
+- **Without OOP**: The `attack` method depends on string input and needs to be changed every time a new character type is introduced.
+- **Effect**: This results in a **rigid** design and requires frequent modifications.
 
-```python
-# With OOP - Inheritance & Polymorphism
-class Character:  # Base class for all characters
-    def attack(self):
-        print("Character attacks")  # General attack for all characters
+#### **With OOP:**
 
-class Warrior(Character):  # Warrior class inheriting from Character class
-    def attack(self):
-        print("Warrior slashes!")  # Warrior-specific attack
+```java
+class Character {
+    public void attack() {
+        System.out.println("Character attacks");  // General attack
+    }
+}
 
-class Mage(Character):  # Mage class inheriting from Character class
-    def attack(self):
-        print("Mage casts spell!")  # Mage-specific attack
+class Warrior extends Character {
+    @Override
+    public void attack() {
+        System.out.println("Warrior slashes!");  // Warrior-specific attack
+    }
+}
 
-# Create character objects for Warrior and Mage
-warrior = Warrior()  # Create a Warrior object
-mage = Mage()  # Create a Mage object
+class Mage extends Character {
+    @Override
+    public void attack() {
+        System.out.println("Mage casts spell!");  // Mage-specific attack
+    }
+}
 
-# Attack with polymorphism, same method behaves differently for different objects
-warrior.attack()  # Warrior slashes!
-mage.attack()  # Mage casts spell!
+public class GameApp {
+    public static void main(String[] args) {
+        Character warrior = new Warrior();  // Creating Warrior object
+        Character mage = new Mage();  // Creating Mage object
+
+        warrior.attack();  // Polymorphic behavior (calls Warrior's attack)
+        mage.attack();  // Polymorphic behavior (calls Mage's attack)
+    }
+}
 ```
+
+**Explanation:**
+- **With OOP**: We use **inheritance** (Warrior, Mage) to define common behavior and **polymorphism** to override `attack()` based on the character type.
+- **Effect**: This design is more flexible and allows the introduction of new character types without changing the existing code.
 
 ---
 
-### ✅ **🚗 Vehicle App: Inheritance for Vehicle Types**
+### ✅ **4. Vehicle App: Inheritance for Vehicle Types**
 
-#### Without OOP:
+#### **Without OOP:**
 
-```python
-# Without OOP - No Inheritance
-def vehicle_info(vehicle_type, speed):
-    if vehicle_type == "car":
-        print(f"Car speed: {speed} km/h")  # Display speed for car
-    elif vehicle_type == "truck":
-        print(f"Truck speed: {speed} km/h")  # Display speed for truck
-    else:
-        print("Unknown vehicle")  # If vehicle type is unknown
+```java
+public class VehicleApp {
+    public static void vehicleInfo(String vehicleType, int speed) {
+        if (vehicleType.equals("car")) {
+            System.out.println("Car speed: " + speed + " km/h");
+        } else if (vehicleType.equals("truck")) {
+            System.out.println("Truck speed: " + speed + " km/h");
+        } else {
+            System.out.println("Unknown vehicle");
+        }
+    }
 
-# Display vehicle info for car and truck
-vehicle_info("car", 120)  # Display speed for car
-vehicle_info("truck", 80)  # Display speed for truck
+    public static void main(String[] args) {
+        vehicleInfo("car", 120);  // Calling vehicleInfo for Car
+        vehicleInfo("truck", 80);  // Calling vehicleInfo for Truck
+    }
+}
 ```
 
-#### With OOP:
+**Explanation:**
+- **Without OOP**: The logic for each vehicle type is embedded in a single method. It becomes hard to extend the system (e.g., for buses or bikes).
+- **Effect**: **Tight coupling** between the vehicle types and logic, which makes maintenance harder.
 
-```python
-# With OOP - Inheritance
-class Vehicle:  # Parent class for all vehicles
-    def __init__(self, speed):
-        self.speed = speed  # Initialize speed for vehicle
+#### **With OOP:**
 
-    def display_info(self):
-        print(f"Vehicle speed: {self.speed} km/h")  # Display speed for general vehicle
+```java
+class Vehicle {
+    protected int speed;  // Common property for all vehicles
 
-class Car(Vehicle):  # Car class inheriting from Vehicle class
-    def display_info(self):
-        print(f"Car speed: {self.speed} km/h")  # Display speed for car
+    public Vehicle(int speed) {
+        this.speed = speed;
+    }
 
-class Truck(Vehicle):  # Truck class inheriting from Vehicle class
-    def display_info(self):
-        print(f"Truck speed: {self.speed} km/h")  # Display speed for truck
+    public void displayInfo() {
+        System.out.println("Vehicle speed: " + speed + " km/h");
+    }
+}
 
-# Create vehicle objects for car and truck
-car = Car(120)  # Create a Car object with speed 120 km/h
-truck = Truck(80)  # Create a Truck object with speed 80 km/h
+class Car extends Vehicle {
+    public Car(int speed) {
+        super(speed);  // Passing speed to parent class constructor
+    }
 
-# Display vehicle info using inheritance
-car.display_info()  # Show speed for car
-truck.display_info()  # Show speed for truck
+    @Override
+    public void displayInfo() {
+        System.out.println("Car speed: " + speed + " km/h");
+    }
+}
+
+class Truck extends Vehicle {
+    public Truck(int speed) {
+        super(speed);  // Passing speed to parent class constructor
+    }
+
+    @Override
+    public void displayInfo() {
+        System.out.println("Truck speed: " + speed + " km/h");
+    }
+}
+
+public class VehicleApp {
+    public static void main(String[] args) {
+        Vehicle car = new Car(120);  // Creating Car object
+        Vehicle truck = new Truck(80);  // Creating Truck object
+
+        car.displayInfo();  // Displaying car info
+        truck.displayInfo();  // Displaying truck info
+    }
+}
 ```
+
+**Explanation:**
+- **With OOP**: We use **inheritance** to create specific vehicle types (Car, Truck) that share common behavior from the `Vehicle` superclass.
+- **Effect**: This is more maintainable and scalable. Adding a new vehicle type (e.g., Bike) would be as simple as creating a new subclass.
 
 ---
 
-### ✅ **🏪 E-commerce App: Product Abstraction**
+### ✅ **5. E-commerce App: Product Abstraction**
 
-#### Without OOP:
+#### **Without OOP:**
 
-```python
-# Without OOP - No Abstraction
-def calculate_price(product_type):
-    if product_type == "book":
-        return 12.99  # Price for book
-    elif product_type == "electronics":
-        return 199.99  # Price for electronics
-    else:
-        return 0  # Default price for unknown product
+```java
+public class ECommerceApp {
+    public static double calculatePrice(String productType) {
+        if (productType.equals("book")) {
+            return 12.99;  // Price of a book
+        } else if (productType.equals("electronics")) {
+            return 199.99;  // Price of electronics
+        } else {
+            return 0;  // Default case
+        }
+    }
 
-# Calculate price for different products
-print("Price of Book:", calculate_price("book"))  # Price of book
-print("Price of Electronics:", calculate_price("electronics"))  # Price of electronics
+    public static void main(String[] args) {
+        System.out.println("Price of Book: " + calculatePrice("book"));
+        System.out.println("Price of Electronics: " + calculatePrice("electronics"));
+    }
+}
 ```
 
-#### With OOP:
+**Explanation:**
+- **Without OOP**: The product logic is hardcoded into the `calculatePrice` method, making it hard to introduce new products without modifying this code.
+- **Effect**: It doesn’t scale well if we want to add more product types or change the pricing model.
 
-```python
-# With OOP - Abstraction
-import abc  # Import abstract base class module
+#### **With OOP:**
 
-class Product(abc.ABC):  # Abstract base class for products
-    @abc.abstractmethod
-    def get_price(self):  # Abstract method to get price of a product
-        pass
+```java
+abstract class Product {
+    public abstract double getPrice();  // Abstract method to get product price
+}
 
-class Book(Product):  # Book class inherits from Product class
-    def get_price(self):
-        return 12.99  # Price for book
+class Book extends Product {
+    @Override
+    public double getPrice() {
+        return 12.99;  // Price of book
+    }
+}
 
-class Electronics(Product):  # Electronics class inherits from Product class
-    def get_price(self):
-        return 199.99  # Price for electronics
+class Electronics extends Product {
+    @Override
+    public double getPrice() {
+        return 199.99;  // Price of electronics
+    }
+}
 
-# Create product objects for book and electronics
-book = Book()  # Create a Book object
-electronics = Electronics()  # Create an Electronics object
+public class ECommerceApp {
+    public static void main(String[] args) {
+        Product book = new Book();  // Creating Book object
+        Product electronics = new Electronics();  // Creating Electronics object
 
-# Calculate price using the `get_price()` method defined in each subclass
-print("Price of Book:", book.get_price())  # Get price for book
-print("Price of Electronics:", electronics.get_price())  # Get price for electronics
+        System.out.println("Price of Book: " + book.getPrice());
+        System.out.println("Price of Electronics: " + electronics.getPrice());
+    }
+}
 ```
+
+**Explanation:**
+- **With OOP**: We use **abstraction** to define a generic `Product` class, and each product type (Book, Electronics) extends this class to implement the price calculation.
+- **Effect**: This approach allows easy addition of new product types without modifying existing code, which follows **the Open/Closed Principle**.
 
 ---
 
-### ✅ **📄 Invoice System: Polymorphism for Different Invoice Types**
+### ✅ **6. Invoice System: Polymorphism for Different Invoice Types**
 
-#### Without OOP:
+#### **Without OOP:**
 
-```python
-# Without OOP - No Polymorphism
-def calculate_total(invoice_type, amount, tax_rate):
-    if invoice_type == "standard":
-        return amount + (amount * tax_rate)  # Standard invoice
-    elif invoice_type == "discounted":
-        return amount + (amount * tax_rate) - 10  # Discounted invoice
-    else:
-        return amount  # Default total for unknown invoice type
+```java
+public class InvoiceSystem {
+    public static double calculateTotal(String invoiceType, double amount, double taxRate) {
+        if (invoiceType.equals("standard")) {
+            return amount + (amount * taxRate);  // Standard invoice calculation
+        } else if (invoiceType.equals("discounted")) {
+            return amount + (amount * taxRate) - 10;  // Discounted invoice calculation
+        } else {
+            return amount;
+        }
+    }
 
-# Calculate total for different invoices
-print("Standard Invoice Total:", calculate_total("standard", 100, 0.15))  # Total for standard invoice
-print("Discounted Invoice Total:", calculate_total("discounted", 100, 0.15))  # Total for discounted invoice
+    public static void main(String[] args) {
+        System.out.println("Standard Invoice Total: " + calculateTotal("standard", 100, 0.15));
+        System.out.println("Discounted Invoice Total: " + calculateTotal("discounted", 100, 0.15));
+    }
+}
 ```
 
-#### With OOP:
+**Explanation:**
+- **Without OOP**: The invoice calculation logic is repeated for different types, making the code **less flexible**.
+- **Effect**: It’s harder to extend the system for new invoice types, and each addition requires modifying this method.
 
-```python
-# With OOP - Polymorphism
-class Invoice:  # Base class for all invoices
-    def calculate_total(self, amount, tax_rate):
-        return amount + (amount * tax_rate)  # Standard invoice calculation
+#### **With OOP:**
 
-class DiscountedInvoice(Invoice):  # Discounted invoice inherits from Invoice class
-    def calculate_total(self, amount, tax_rate):
-        return amount + (amount * tax_rate) - 10  # Discounted invoice calculation (subtract $10)
+```java
+class Invoice {
+    public double calculateTotal(double amount, double taxRate) {
+        return amount + (amount * taxRate);  // Standard invoice calculation
+    }
+}
 
-# Create invoice objects for standard and discounted invoices
-standard_invoice = Invoice()  # Create a standard invoice object
-discounted_invoice = DiscountedInvoice()  # Create a discounted invoice object
+class DiscountedInvoice extends Invoice {
+    @Override
+    public double calculateTotal(double amount, double taxRate) {
+        return amount + (amount * taxRate) - 10;  // Discounted invoice calculation
+    }
+}
 
-# Calculate total using polymorphism, each object implements its own calculation logic
-print("Standard Invoice Total:", standard_invoice.calculate_total(100, 0.15))  # Standard invoice total
-print("Discounted Invoice Total:", discounted_invoice.calculate_total(100, 0.15))  # Discounted invoice total
+public class InvoiceSystem {
+    public static void main(String[] args) {
+        Invoice standardInvoice = new Invoice();  // Creating standard invoice
+        Invoice discountedInvoice = new DiscountedInvoice();  // Creating discounted invoice
+
+        System.out.println("Standard Invoice Total: " + standardInvoice.calculateTotal(100, 0.15));
+        System.out.println("Discounted Invoice Total: " + discountedInvoice.calculateTotal(100, 0.15));
+    }
+}
 ```
+
+**Explanation:**
+- **With OOP**: **Polymorphism** allows us to create different invoice types with their own behavior (standard, discounted) while keeping the same method name (`calculateTotal`).
+- **Effect**: This makes the code **flexible** and easy to extend with more types of invoices (e.g., tax-exempt).
+
+---
+
+### ✅ **7. Calculator: Overloading Example (Same Method Name)**
+
+#### **Without OOP:**
+
+```java
+public class Calculator {
+    public static double calculate(double x, double y) {
+        return x + y;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Sum: " + calculate(5, 3));  // Using the calculate method
+    }
+}
+```
+
+**Explanation:**
+- **Without Overloading**: There’s only one `calculate` method that only performs addition. If we want more operations (like subtraction, multiplication), we’d need to create multiple methods or add if-else statements, making the code longer.
+
+#### **With Overloading:**
+
+```java
+public class Calculator {
+    // Overloaded method for addition
+    public double calculate(double x, double y) {
+        return x + y;
+    }
+
+    // Overloaded method for subtraction
+    public double calculate(double x, double y, String operation) {
+        if (operation.equals("subtract")) {
+            return x - y;
+        }
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();  // Creating a Calculator object
+
+        System.out.println("Sum: " + calc.calculate(5, 3));  // Using overloaded method for addition
+        System.out.println("Difference: " + calc.calculate(5, 3, "subtract"));  // Using overloaded method for subtraction
+    }
+}
+```
+
+**Explanation:**
+- **With Overloading**: We have **multiple methods** with the same name but different parameters (number of arguments or type of argument).
+- **Effect**: Overloading keeps the method names consistent, reducing redundancy and improving readability.
+
+---
+
+### ✅ **8. Discount System: Overloading with Different Parameters**
+
+#### **Without Overloading:**
+
+```java
+public class DiscountSystem {
+    public static double calculateDiscount(double price) {
+        return price * 0.1;  // 10% discount for regular customers
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Discount: " + calculateDiscount(200));  // Calling method with one parameter
+    }
+}
+```
+
+**Explanation:**
+- **Without Overloading**: There’s only one method that gives a fixed discount (10%).
+- **Effect**: If we want different discounts based on conditions (e.g., seasonal or VIP discounts), we need to add conditions in this method.
+
+#### **With Overloading:**
+
+```java
+public class DiscountSystem {
+    // Overloaded method for regular discount
+    public static double calculateDiscount(double price) {
+        return price * 0.1;  // 10% discount for regular customers
+    }
+
+    // Overloaded method for VIP discount
+    public static double calculateDiscount(double price, boolean isVIP) {
+        if (isVIP) {
+            return price * 0.2;  // 20% discount for VIP customers
+        }
+        return price * 0.1;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Regular Discount: " + calculateDiscount(200));  // Regular discount for one parameter
+        System.out.println("VIP Discount: " + calculateDiscount(200, true));  // VIP discount using two parameters
+    }
+}
+```
+
+**Explanation:**
+- **With Overloading**: We can **adjust** the discount logic for different customer types using method overloading.
+- **Effect**: This reduces complexity in the code by having a method for different scenarios, providing flexibility in the discount system.
+
+---
+
+### ✅ **9. Shopping Cart: Overloading for Item Quantity**
+
+#### **Without Overloading:**
+
+```java
+public class ShoppingCart {
+    public static double calculateTotal(double price) {
+        return price;  // Total price for a single item
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Total: " + calculateTotal(50));  // Total price for one item
+    }
+}
+```
+
+**Explanation:**
+- **Without Overloading**: The `calculateTotal` method only handles single items. If you want to add quantities, you'd need to modify the method.
+
+#### **With Overloading:**
+
+```java
+public class ShoppingCart {
+    // Overloaded method for single item
+    public static double calculateTotal(double price) {
+        return price;  // Total price for one item
+    }
+
+    // Overloaded method for multiple items
+    public static double calculateTotal(double price, int quantity) {
+        return price * quantity;  // Total price for multiple items
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Total for one item: " + calculateTotal(50));
+
+  // Total for single item
+        System.out.println("Total for multiple items: " + calculateTotal(50, 3));  // Total for 3 items
+    }
+}
+```
+
+**Explanation:**
+- **With Overloading**: We use method overloading to calculate the total for both single items and multiple items, without needing to create new method names.
+- **Effect**: It makes the code cleaner and more intuitive for handling different purchase scenarios.
+
+---
+
+### ✅ **10. Utility Classes: Overloading for String Manipulation**
+
+#### **Without Overloading:**
+
+```java
+public class StringUtils {
+    public static String capitalize(String text) {
+        return text.substring(0, 1).toUpperCase() + text.substring(1);  // Capitalizing first letter
+    }
+
+    public static void main(String[] args) {
+        System.out.println(capitalize("hello"));  // Calling capitalize method
+    }
+}
+```
+
+**Explanation:**
+- **Without Overloading**: The `capitalize` method only works for simple string input. If you wanted to change capitalization for different cases (e.g., upper case for all characters), you'd need to write new methods.
+
+#### **With Overloading:**
+
+```java
+public class StringUtils {
+    // Overloaded method for capitalizing first letter
+    public static String capitalize(String text) {
+        return text.substring(0, 1).toUpperCase() + text.substring(1);
+    }
+
+    // Overloaded method for converting to uppercase
+    public static String capitalize(String text, boolean toUpperCase) {
+        if (toUpperCase) {
+            return text.toUpperCase();  // Capitalize all letters
+        } else {
+            return text.substring(0, 1).toUpperCase() + text.substring(1);  // Capitalize first letter only
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(capitalize("hello"));  // Capitalize only first letter
+        System.out.println(capitalize("hello", true));  // Convert entire string to uppercase
+    }
+}
+```
+
+**Explanation:**
+- **With Overloading**: We provide two versions of the `capitalize` method, making the utility class more **flexible**.
+- **Effect**: This reduces the need for creating multiple methods, improves **code reusability**, and keeps the code compact.
+
+---
 
 ---
 
