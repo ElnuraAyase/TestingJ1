@@ -497,75 +497,321 @@ public class Game {
 
 ---
 
-### 🧠 BONUS: Method Overloading vs Polymorphism
-
-#### ❌ Problem: Method Overloading without Polymorphism
-```java
-// Overloaded methods for each operation type
-public class OverloadedCalculator {
-    public double operate(double a, double b, String op) {
-        if (op.equals("add")) return a + b;
-        if (op.equals("sub")) return a - b;
-        if (op.equals("div")) return b == 0 ? Double.NaN : a / b;
-        return 0;
-    }
-}
-
-// Usage
-OverloadedCalculator calc = new OverloadedCalculator();
-System.out.println(calc.operate(5, 3, "add"));  // Output: 8
-```
-
-➡️ **Problems:**
-- Adds logic complexity inside one method.
-- Harder to maintain and extend (e.g. for new operations).
-- Logic tied to string comparison — prone to errors.
+Certainly! Below is the full version of the examples with explicit comments added for clarity. The comments will help beginners understand the principles of OOP as they go through the code.
 
 ---
 
-#### ✅ Solution: Polymorphism
-```java
-// Abstract operation class
-abstract class Operation {
-    public abstract double execute(double a, double b);
-}
-
-// Concrete implementations
-class Add extends Operation {
-    @Override
-    public double execute(double a, double b) {
-        return a + b;
-    }
-}
-
-class Sub extends Operation {
-    @Override
-    public double execute(double a, double b) {
-        return a - b;
-    }
-}
-
-class Div extends Operation {
-    @Override
-    public double execute(double a, double b) {
-        return b == 0 ? Double.NaN : a / b;
-    }
-}
-
-// Polymorphic handler
-public class PolyCalculator {
-    public static double compute(Operation op, double a, double b) {
-        return op.execute(a, b);  // No need to check the type
-    }
-
-    public static void main(String[] args) {
-        System.out.println(compute(new Add(), 5, 3));  // Output: 8
-    }
-}
-```
-
-➡️ **Effect:** Polymorphism simplifies logic, avoids error-prone string conditions, and makes it easier to scale and add new behaviors.
+## 🧠 **BONUS: 6 Extra Examples (Non-Calculator Projects)**
 
 ---
 
-Let me know if you'd like this exported to a `.md` file or styled for printing!
+### ✅ **🏦 Banking System: Encapsulation and Data Protection**
+
+#### Without OOP:
+
+```python
+# Without OOP - No Encapsulation
+balance = 1000  # global account balance
+
+# Function to withdraw money
+def withdraw(amount):
+    global balance  # Directly modifying the global balance
+    if balance >= amount:
+        balance -= amount  # Deduct the amount from balance
+        print(f"Withdrawn {amount}, remaining balance is {balance}")
+    else:
+        print("Insufficient balance")  # Error if not enough balance
+
+# Withdraw money
+withdraw(200)  # Withdraw $200
+print("Balance after withdrawal:", balance)  # Show remaining balance
+```
+
+#### With OOP:
+
+```python
+# With OOP - Encapsulation
+class BankAccount:
+    def __init__(self, balance):
+        self.__balance = balance  # private attribute, cannot be accessed directly
+
+    def withdraw(self, amount):
+        if self.__balance >= amount:
+            self.__balance -= amount  # Deduct the amount from the private balance
+            print(f"Withdrawn {amount}, remaining balance is {self.__balance}")
+        else:
+            print("Insufficient balance")  # Error if not enough balance
+
+    def get_balance(self):
+        return self.__balance  # Public method to safely access the balance
+
+# Create a BankAccount object with $1000 balance
+account = BankAccount(1000)
+
+# Withdraw money
+account.withdraw(200)  # Withdraw $200
+print("Balance after withdrawal:", account.get_balance())  # Access balance through a getter
+```
+
+---
+
+### ✅ **🏠 Real Estate App: Abstraction of Property Types**
+
+#### Without OOP:
+
+```python
+# Without OOP - No Abstraction
+def calculate_area(property_type, *params):
+    if property_type == "house":
+        return params[0] * params[1]  # length * width for house
+    elif property_type == "apartment":
+        return params[0] * params[1]  # length * width for apartment
+    else:
+        return "Unknown property type"  # Invalid property type
+
+# Calculate area for different property types
+print("House Area:", calculate_area("house", 10, 20))  # Calculate area for house (10x20)
+print("Apartment Area:", calculate_area("apartment", 15, 10))  # Calculate area for apartment (15x10)
+```
+
+#### With OOP:
+
+```python
+# With OOP - Abstraction
+import abc  # Importing the abstract base class module
+
+class Property(abc.ABC):  # Abstract base class (abstract class)
+    @abc.abstractmethod
+    def calculate_area(self):  # Abstract method that must be implemented by subclasses
+        pass
+
+class House(Property):
+    def __init__(self, length, width):
+        self.length = length  # Initialize length
+        self.width = width    # Initialize width
+
+    def calculate_area(self):
+        return self.length * self.width  # Calculate area for house
+
+class Apartment(Property):
+    def __init__(self, length, width):
+        self.length = length  # Initialize length
+        self.width = width    # Initialize width
+
+    def calculate_area(self):
+        return self.length * self.width  # Calculate area for apartment
+
+# Create property objects for house and apartment
+house = House(10, 20)  # Create a House object with dimensions 10x20
+apartment = Apartment(15, 10)  # Create an Apartment object with dimensions 15x10
+
+# Calculate area using the `calculate_area()` method defined in each class
+print("House Area:", house.calculate_area())  # Get area for house
+print("Apartment Area:", apartment.calculate_area())  # Get area for apartment
+```
+
+---
+
+### ✅ **🎮 Game App: Character Inheritance and Polymorphism**
+
+#### Without OOP:
+
+```python
+# Without OOP - No Inheritance/Polymorphism
+def attack(character_type):
+    if character_type == "warrior":
+        print("Warrior slashes!")  # Warrior-specific attack
+    elif character_type == "mage":
+        print("Mage casts spell!")  # Mage-specific attack
+    else:
+        print("Character attacks")  # General attack
+
+# Attack with different characters
+attack("warrior")  # Warrior's attack
+attack("mage")  # Mage's attack
+```
+
+#### With OOP:
+
+```python
+# With OOP - Inheritance & Polymorphism
+class Character:  # Base class for all characters
+    def attack(self):
+        print("Character attacks")  # General attack for all characters
+
+class Warrior(Character):  # Warrior class inheriting from Character class
+    def attack(self):
+        print("Warrior slashes!")  # Warrior-specific attack
+
+class Mage(Character):  # Mage class inheriting from Character class
+    def attack(self):
+        print("Mage casts spell!")  # Mage-specific attack
+
+# Create character objects for Warrior and Mage
+warrior = Warrior()  # Create a Warrior object
+mage = Mage()  # Create a Mage object
+
+# Attack with polymorphism, same method behaves differently for different objects
+warrior.attack()  # Warrior slashes!
+mage.attack()  # Mage casts spell!
+```
+
+---
+
+### ✅ **🚗 Vehicle App: Inheritance for Vehicle Types**
+
+#### Without OOP:
+
+```python
+# Without OOP - No Inheritance
+def vehicle_info(vehicle_type, speed):
+    if vehicle_type == "car":
+        print(f"Car speed: {speed} km/h")  # Display speed for car
+    elif vehicle_type == "truck":
+        print(f"Truck speed: {speed} km/h")  # Display speed for truck
+    else:
+        print("Unknown vehicle")  # If vehicle type is unknown
+
+# Display vehicle info for car and truck
+vehicle_info("car", 120)  # Display speed for car
+vehicle_info("truck", 80)  # Display speed for truck
+```
+
+#### With OOP:
+
+```python
+# With OOP - Inheritance
+class Vehicle:  # Parent class for all vehicles
+    def __init__(self, speed):
+        self.speed = speed  # Initialize speed for vehicle
+
+    def display_info(self):
+        print(f"Vehicle speed: {self.speed} km/h")  # Display speed for general vehicle
+
+class Car(Vehicle):  # Car class inheriting from Vehicle class
+    def display_info(self):
+        print(f"Car speed: {self.speed} km/h")  # Display speed for car
+
+class Truck(Vehicle):  # Truck class inheriting from Vehicle class
+    def display_info(self):
+        print(f"Truck speed: {self.speed} km/h")  # Display speed for truck
+
+# Create vehicle objects for car and truck
+car = Car(120)  # Create a Car object with speed 120 km/h
+truck = Truck(80)  # Create a Truck object with speed 80 km/h
+
+# Display vehicle info using inheritance
+car.display_info()  # Show speed for car
+truck.display_info()  # Show speed for truck
+```
+
+---
+
+### ✅ **🏪 E-commerce App: Product Abstraction**
+
+#### Without OOP:
+
+```python
+# Without OOP - No Abstraction
+def calculate_price(product_type):
+    if product_type == "book":
+        return 12.99  # Price for book
+    elif product_type == "electronics":
+        return 199.99  # Price for electronics
+    else:
+        return 0  # Default price for unknown product
+
+# Calculate price for different products
+print("Price of Book:", calculate_price("book"))  # Price of book
+print("Price of Electronics:", calculate_price("electronics"))  # Price of electronics
+```
+
+#### With OOP:
+
+```python
+# With OOP - Abstraction
+import abc  # Import abstract base class module
+
+class Product(abc.ABC):  # Abstract base class for products
+    @abc.abstractmethod
+    def get_price(self):  # Abstract method to get price of a product
+        pass
+
+class Book(Product):  # Book class inherits from Product class
+    def get_price(self):
+        return 12.99  # Price for book
+
+class Electronics(Product):  # Electronics class inherits from Product class
+    def get_price(self):
+        return 199.99  # Price for electronics
+
+# Create product objects for book and electronics
+book = Book()  # Create a Book object
+electronics = Electronics()  # Create an Electronics object
+
+# Calculate price using the `get_price()` method defined in each subclass
+print("Price of Book:", book.get_price())  # Get price for book
+print("Price of Electronics:", electronics.get_price())  # Get price for electronics
+```
+
+---
+
+### ✅ **📄 Invoice System: Polymorphism for Different Invoice Types**
+
+#### Without OOP:
+
+```python
+# Without OOP - No Polymorphism
+def calculate_total(invoice_type, amount, tax_rate):
+    if invoice_type == "standard":
+        return amount + (amount * tax_rate)  # Standard invoice
+    elif invoice_type == "discounted":
+        return amount + (amount * tax_rate) - 10  # Discounted invoice
+    else:
+        return amount  # Default total for unknown invoice type
+
+# Calculate total for different invoices
+print("Standard Invoice Total:", calculate_total("standard", 100, 0.15))  # Total for standard invoice
+print("Discounted Invoice Total:", calculate_total("discounted", 100, 0.15))  # Total for discounted invoice
+```
+
+#### With OOP:
+
+```python
+# With OOP - Polymorphism
+class Invoice:  # Base class for all invoices
+    def calculate_total(self, amount, tax_rate):
+        return amount + (amount * tax_rate)  # Standard invoice calculation
+
+class DiscountedInvoice(Invoice):  # Discounted invoice inherits from Invoice class
+    def calculate_total(self, amount, tax_rate):
+        return amount + (amount * tax_rate) - 10  # Discounted invoice calculation (subtract $10)
+
+# Create invoice objects for standard and discounted invoices
+standard_invoice = Invoice()  # Create a standard invoice object
+discounted_invoice = DiscountedInvoice()  # Create a discounted invoice object
+
+# Calculate total using polymorphism, each object implements its own calculation logic
+print("Standard Invoice Total:", standard_invoice.calculate_total(100, 0.15))  # Standard invoice total
+print("Discounted Invoice Total:", discounted_invoice.calculate_total(100, 0.15))  # Discounted invoice total
+```
+
+---
+
+### ⚖️ **Summary Table – OOP vs. No OOP**
+
+| **Principle**     | **Solves**         | **With OOP**                                             | **Without OOP**                                    |
+|-------------------|--------------------|----------------------------------------------------------|----------------------------------------------------|
+| **Encapsulation**  | Secure data        | Prevents direct access to internal state                 | Bugs due to uncontrolled access                   |
+| **Abstraction**    | Simplify use       | Hides complex logic from user                            | Cluttered, error-prone logic exposed              |
+| **Inheritance**    | Code reuse         | Avoids duplicate code                                    | Rewriting same logic repeatedly                   |
+| **Polymorphism**   | Flexibility        | Treat objects generically                                | Too many if-else or switch cases                  |
+
+---
+
+### ✅ **Summary**
+
+- **Encapsulation**: Hide internal state with private attributes, access through getter/setter methods.
+- **Abstraction**: Use abstract classes or interfaces to expose behavior while hiding implementation details.
+- **Inheritance**: Share common logic using `extends` and override behavior in child classes.
+- **Polymorphism**: Same method name behaves differently depending
