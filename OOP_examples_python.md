@@ -1,6 +1,4 @@
-Absolutely! Let's use the idea of a **Calculator App** and walk through **each OOP principle** — with **3 examples for each**, complete with **code, step-by-step explanations, and before/after comparison** where needed.
 
-We'll use **Python** for simplicity. Ready? Let’s go 🔥
 
 ---
 
