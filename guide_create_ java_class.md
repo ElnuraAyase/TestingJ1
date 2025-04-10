@@ -1,4 +1,3 @@
-To make the document more user-friendly with colors, good headings, and clarity, I'll structure the steps logically and highlight key points. The aim is to make the guide easy to follow and understand. Below is an outline for the **step-by-step guide** along with the **problem explanation** clearly laid out.
 
 ---
 
@@ -145,5 +144,4 @@ Project Root
 
 ---
 
-By following this step-by-step guide and troubleshooting tips, you should be able to easily manage your Java classes in IntelliJ IDEA, even when moving them between folders or after project restructuring.
 
