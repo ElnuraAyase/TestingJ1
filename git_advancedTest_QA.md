@@ -3,31 +3,33 @@
 
 ## 🧠 Combined Q&A – Master Level
 
+Here’s an expanded list of common Git commands with additional commands related to your request, along with explanations for removing files from `.gitignore` and tracking specific files.
+
 ### ❓ Questions and Answers
 
-| Question | Answer |
-|----------|--------|
-| **What does `git merge` do?** | Combines changes from one branch into another. |
+| **Question** | **Answer** |
+|--------------|------------|
+| **What does git merge do?** | Combines changes from one branch into another. |
 | **How to undo changes without deleting commits?** | `git revert` |
 | **How to remove a submodule?** | `git submodule deinit`, `git rm`, delete `.git/modules`. |
 | **How to apply and remove the top stash?** | `git stash pop` |
 | **What is the staging area?** | Where changes are staged before commit. |
-| **What does `git tag` do?** | Marks a specific commit. |
-| **What does `HEAD` point to?** | Current branch or latest commit. |
+| **What does git tag do?** | Marks a specific commit. |
+| **What does HEAD point to?** | Current branch or latest commit. |
 | **Difference: rebase vs merge?** | Rebase rewrites history; merge combines branches. |
 | **How to remove a branch locally and remotely?** | `git branch -d`, `git push origin --delete`. |
-| **What does `git log` do?** | Shows commit history. |
-| **What is the purpose of `git stash`?** | Temporarily hides local changes. |
-| **What is `git revert <hash>` used for?** | Creates a commit to undo a previous one. |
+| **What does git log do?** | Shows commit history. |
+| **What is the purpose of git stash?** | Temporarily hides local changes. |
+| **What is git revert <hash> used for?** | Creates a commit to undo a previous one. |
 | **Best way to undo a commit but keep changes?** | `git reset --soft HEAD~1` |
 | **What command starts a Git repo?** | `git init` |
-| **What happens if you `git push` a new branch?** | It is created remotely. |
+| **What happens if you git push a new branch?** | It is created remotely. |
 | **How to compare local vs remote commits?** | `git log origin/main..HEAD` |
 | **What is a submodule?** | A repo inside another repo. |
-| **What does `git stash list` do?** | Shows stashed changes. |
+| **What does git stash list do?** | Shows stashed changes. |
 | **Clean way to rewrite commit history?** | `git rebase -i` |
 | **Command to delete a remote branch?** | `git push origin --delete <branch>` |
-| **What does `git cherry-pick` do?** | Applies selected commits to another branch. |
+| **What does git cherry-pick do?** | Applies selected commits to another branch. |
 | **How do you track a remote branch locally?** | `git checkout --track origin/branch-name` |
 | **How to undo the last commit completely?** | `git reset --hard HEAD~1` |
 | **How to rename a branch?** | `git branch -m old-name new-name` |
@@ -36,9 +38,11 @@
 | **How to see untracked files?** | `git status` |
 | **How to show all tags?** | `git tag` |
 | **How to apply a stash without deleting it?** | `git stash apply` |
-| **What does `git diff` show?** | Differences between commits, branches, or working directory. |
+| **What does git diff show?** | Differences between commits, branches, or working directory. |
 
 ---
+
+
 
 ### ✅ True or False (Advanced)
 
