@@ -80,61 +80,57 @@ git checkout -b feature/login-fix
 - ❌ **.gitignore:** Files Git should ignore
 
 ---
-here 
-❓ More Knowledge Check – Advanced Q&A
+Here’s the section formatted to match the rest of your markdown doc so you can easily copy and paste it in:
 
-🔄 Git Concepts Clarified
+---
 
-🔀 What is merge?
-git merge is used to combine changes from one branch into another. It integrates the histories of two branches, creating a new commit on the target branch.
+## ❓ More Knowledge Check – Advanced Q&A
 
+### 🔄 Git Concepts Clarified
+
+**🔀 What is `merge`?**  
+`git merge` is used to combine changes from one branch into another. It integrates the histories of two branches, creating a new commit on the target branch.
+```bash
 git checkout main
 git merge feature/login
+```
 
-📤 Difference: merge, push, and fetch
+**📤 Difference: `merge`, `push`, and `fetch`**
 
-Action
+| Action | Description |
+|--------|-------------|
+| **Merge** | Combines branches locally. |
+| **Push** | Sends local commits to the remote repository. |
+| **Fetch** | Downloads commits from remote without changing your current branch. |
 
-Description
+**⚙️ What is `git init`?**  
+Initializes a new Git repository in the current folder. It creates a `.git/` directory for tracking.
 
-Merge
-
-Combines branches locally.
-
-Push
-
-Sends local commits to the remote repository.
-
-Fetch
-
-Downloads commits from remote without changing your current branch.
-
-⚙️ What is git init?
-Initializes a new Git repository in the current folder. It creates a .git/ directory for tracking.
-
-⚔️ What is a Merge Conflict?
+**⚔️ What is a Merge Conflict?**  
 Occurs when Git cannot auto-merge changes due to conflicting code. Resolve manually, then commit.
 
-🧹 How to Delete a Subrepo (Submodule)
-
+**🧹 How to Delete a Subrepo (Submodule)**  
+```bash
 git submodule deinit path/to/subrepo
 git rm path/to/subrepo
 rm -rf .git/modules/path/to/subrepo
+```
 
-⏪ What is revert?
-git revert <commit> creates a new commit that undoes the changes made by the specified commit, preserving history.
+**⏪ What is `revert`?**  
+`git revert <commit>` creates a new commit that undoes the changes made by the specified commit, preserving history.
 
-🔢 What is a Hash?
-A unique SHA-1 ID representing a Git commit (e.g., 9c1d7e8a3c1f47...).
+**🔢 What is a Hash?**  
+A unique SHA-1 ID representing a Git commit (e.g., `9c1d7e8a3c1f47...`).
 
-📦 What is Stash?
+**📦 What is Stash?**  
 Temporarily stores uncommitted changes so you can work on something else.
 
-📤 What is Pop Changes?
-git stash pop restores the most recently stashed changes and removes them from the stash list.
+**📤 What is Pop Changes?**  
+`git stash pop` restores the most recently stashed changes and removes them from the stash list.
 
+---
 
-here 
+Let me know if you want this styled for PDF or printable, or want this expanded with visuals or CLI demos.
 ## 🔐 Public vs Private Repos (Azure)
 
 | Repo Type | Who Can See | Use Case |
