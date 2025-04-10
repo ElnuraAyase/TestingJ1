@@ -278,9 +278,5 @@ git push origin your-branch
 
 ---
 
-Let me know if you'd like:
-- A printable PDF version
-- Flashcards based on this guide
-- A command quiz app
-- GitHub/GitLab/Azure pipeline integration help
+
 
