@@ -211,6 +211,37 @@ git push origin main
 | `git stash` | Temp hide changes | `git stash save "WIP on Elnura.java"` |
 | `git reset` | Undo actions | `git reset --hard HEAD~1` to discard last Elnura commit |
 
+### Additional Commands
+
+1. **How to remove a file or folder from `.gitignore`**  
+   To stop ignoring a file or folder that was previously ignored:
+   ```bash
+   git rm --cached <file_or_folder>
+   git add <file_or_folder>
+   git commit -m "Remove <file_or_folder> from .gitignore"
+   ```
+   This removes the file from the index but keeps it in your working directory.
+
+2. **How to track a specific file**  
+   If you've added a file to `.gitignore` but now want to track it, you need to first remove it from the `.gitignore` file (or modify the `.gitignore` to exclude it) and then add it to Git:
+   ```bash
+   git add <file_name>
+   git commit -m "Start tracking <file_name>"
+   ```
+
+3. **How to add a specific file to Git**  
+   To add a specific file to the staging area, use:
+   ```bash
+   git add <file_name>
+   ```
+
+4. **How to add all changes in the current directory**  
+   To add all changes (new, modified, or deleted files) in the current directory and its subdirectories:
+   ```bash
+   git add .
+   ```
+
+
 ---
 
 ## 🧪 Example Workflow
