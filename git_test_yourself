@@ -1,0 +1,158 @@
+Absolutely! Here's an **additional section with more questions, answers, and a comprehensive test** based on your awesome Git guide. I’ve also added a definition of `git fetch` and how it differs from `git pull`.
+
+---
+
+## ❓ More Knowledge Check – Advanced Q&A
+
+| ❓ Question | ✅ Answer |
+|-------------|----------|
+| What does `git fetch` do? | Downloads latest changes from remote but doesn’t merge them |
+| Difference between `fetch` and `pull`? | `fetch` = get changes only, `pull` = get + merge |
+| How to switch branches? | `git checkout branch-name` |
+| How to delete a remote branch? | `git push origin --delete branch-name` |
+| What’s a rebase used for? | To make commit history cleaner by replaying commits on top of another branch |
+| How do you stash and pop changes? | `git stash`, then `git stash pop` |
+| How to list stashes? | `git stash list` |
+| How to fix merge conflict? | Edit conflicting files, stage them (`git add`), then commit |
+| What’s the difference between `origin` and `upstream`? | `origin` = your remote repo; `upstream` = original repo you forked from |
+| How do you create a tag? | `git tag v1.0` |
+| How to push tags to remote? | `git push origin --tags` |
+| How to revert a commit by hash? | `git revert <commit-hash>` |
+| How to squash commits? | `git rebase -i HEAD~N` then mark as `squash` |
+| What is `.gitignore` for? | Tells Git to ignore certain files/folders |
+| What’s the staging area? | Where changes go before being committed |
+| What does `HEAD` mean in Git? | The current pointer to your latest commit |
+| How to rename a branch? | `git branch -m old-name new-name` |
+| How to compare branches? | `git diff branch1..branch2` |
+
+---
+
+## 🧪 Git Knowledge Test (Multiple Choice)
+
+### ❓ 1. What is the purpose of `git init`?
+
+A. Create a new branch  
+B. Start a new Git repository  
+C. Push to remote  
+D. Clone a repo
+
+✅ **Answer:** B
+
+---
+
+### ❓ 2. Which command shows all branches?
+
+A. `git branch -a`  
+B. `git list`  
+C. `git show branches`  
+D. `git commit -a`
+
+✅ **Answer:** A
+
+---
+
+### ❓ 3. What does `git fetch` do?
+
+A. Pulls and merges changes  
+B. Clones a repository  
+C. Downloads remote changes without applying them  
+D. Deletes remote history
+
+✅ **Answer:** C
+
+---
+
+### ❓ 4. What’s the safest way to update your local feature branch with changes from `main`?
+
+A. `git push origin main`  
+B. `git checkout main`  
+C. `git rebase main`  
+D. `git init`
+
+✅ **Answer:** C
+
+---
+
+### ❓ 5. What does `git stash` do?
+
+A. Deletes changes  
+B. Hides uncommitted changes temporarily  
+C. Commits code  
+D. Switches branches
+
+✅ **Answer:** B
+
+---
+
+### ❓ 6. How to see which branch you're currently on?
+
+A. `git status`  
+B. `git rev-parse --abbrev-ref HEAD`  
+C. `git log`  
+D. `git current`
+
+✅ **Answer:** B
+
+---
+
+### ❓ 7. What does `git reset --hard` do?
+
+A. Keeps changes  
+B. Undoes commit but keeps changes  
+C. Discards commit and all changes  
+D. Creates a new repo
+
+✅ **Answer:** C
+
+---
+
+### ❓ 8. What is a Pull Request?
+
+A. Request to clone a repo  
+B. Request to merge a branch into another  
+C. Request to fork a repo  
+D. Command to push changes
+
+✅ **Answer:** B
+
+---
+
+### ❓ 9. How do you create a new branch and switch to it?
+
+A. `git switch -b new-branch`  
+B. `git branch new-branch`  
+C. `git checkout -b new-branch`  
+D. Both A and C
+
+✅ **Answer:** D (Both A and C work in recent versions)
+
+---
+
+### ❓ 10. Which file prevents Git from tracking certain files?
+
+A. `README.md`  
+B. `.gitlog`  
+C. `.gitignore`  
+D. `settings.json`
+
+✅ **Answer:** C
+
+---
+
+## 📝 True or False Test
+
+| Statement | ✅ True/False |
+|-----------|---------------|
+| `git pull` fetches and merges code | ✅ True |
+| Git tracks every single file on your OS | ❌ False |
+| A stash can be applied multiple times | ✅ True |
+| `git push` is used to stage changes | ❌ False |
+| A fork is the same as a clone | ❌ False |
+| `git log` shows commit history | ✅ True |
+| You can work offline with Git | ✅ True |
+| Merge conflicts only happen during fetch | ❌ False |
+| IntelliJ integrates Git via command line only | ❌ False |
+
+---
+
+Would you like me to send this **as a separate file (PDF, .docx, .md)** with all questions and answers neatly formatted for print, study, or team distribution? I can also generate flashcards or an interactive quiz version if you're prepping for interviews or training others.
