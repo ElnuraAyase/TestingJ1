@@ -199,6 +199,99 @@ If you need to undo your last commit, you have a few options:
 
 ---
 
-### **Conclusion**
+Absolutely! Here's a complete and organized **cheat sheet** that covers everything you asked:  
+- Navigating folders  
+- Git tracking check  
+- Removing a folder from tracking  
+- Moving it locally  
+- `echo` explained  
+- A table of common terminal commands
+
+---
+
+## 🗂️ Terminal Navigation Cheat Sheet
+
+| Command               | Description                                      | Example                                  |
+|------------------------|--------------------------------------------------|------------------------------------------|
+| `cd folderName`        | Change directory into a folder                  | `cd Task`                                |
+| `cd ..`                | Go up one level (to parent folder)              | `cd ..`                                  |
+| `cd ../OtherFolder`    | Go up and into a sibling folder                 | `cd ../Task_Backup`                      |
+| `ls` (or `dir` in Win) | List files and folders in current directory     | `ls` or `dir`                            |
+| `pwd`                  | Show current working directory path             | `pwd`                                    |
+
+---
+
+## 🔍 Git: Check & Remove Tracking for a Folder
+
+### ✅ 1. **Check if Git is tracking a specific folder locally**
+
+```bash
+git ls-files | findstr /i task
+```
+
+> This searches Git's index for any files under the `task` folder.
+
+---
+
+### ✅ 2. **If it *is* tracked remotely — remove from Git tracking but keep it locally**
+
+```bash
+git rm -r --cached task/
+```
+
+Then:
+```bash
+echo "task/" >> .gitignore    # So Git will ignore it in future
+git add .gitignore
+git commit -m "Removed task folder from Git tracking, kept locally"
+git push origin <branch-name>
+```
+
+📌 Now `task/` stays on your machine but is gone from GitHub.
+
+---
+
+### ✅ 3. **Move folder to another location locally**
+
+Example: Move `task/` to `archived/task/`
+
+```bash
+mkdir -p archived            # Make a new folder if needed
+mv task archived/           # Move the task folder
+```
+
+---
+
+## 💬 What is `echo`?
+
+`echo` is a terminal command used to **output text** or **write text to a file**.
+
+| Syntax Example                      | What It Does                                |
+|------------------------------------|---------------------------------------------|
+| `echo Hello!`                      | Prints `Hello!` to the terminal             |
+| `echo "task/" >> .gitignore`       | Appends `task/` to `.gitignore` file       |
+| `echo "text" > file.txt`           | Overwrites file.txt with `text`            |
+| `echo "another" >> file.txt`       | Appends `another` to file.txt              |
+
+🧠 Use `>` to overwrite, `>>` to append.
+
+---
+
+## 🛠️ Other Helpful Terminal Commands
+
+| Command              | Purpose                                           | Example                                       |
+|----------------------|---------------------------------------------------|-----------------------------------------------|
+| `touch filename`     | Create an empty file                             | `touch readme.md`                             |
+| `mkdir folder`       | Create a folder                                  | `mkdir logs`                                  |
+| `rm file`            | Delete a file                                    | `rm temp.txt`                                 |
+| `rm -r folder`       | Delete a folder and contents                     | `rm -r old_files/`                            |
+| `mv source target`   | Move or rename files/folders                     | `mv task/ archived/`                          |
+| `cp source target`   | Copy files or folders                            | `cp config.txt backup/config.txt`             |
+| `cat filename`       | Display contents of a file                       | `cat .gitignore`                              |
+| `findstr "word" file`| Search for a word in a file (Windows)            | `findstr "task" .gitignore`                   |
+
+---
+
+
 
 
