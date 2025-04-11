@@ -164,6 +164,8 @@ Let me know if you want this styled for PDF or printable, or want this expanded 
 | `git rev-parse --abbrev-ref HEAD` | Show current branch |
 | `git submodule status` | Show subrepo status |
 | `git show` | Show commit details |
+| `git ls-files` | List all tracked files in the repository |
+| `pwd` | Show current working directory paths |
 
 To see what was pushed vs local:
 ```bash
