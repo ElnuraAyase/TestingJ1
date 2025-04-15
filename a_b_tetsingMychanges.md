@@ -307,10 +307,9 @@ docker-compose -f init_rekindle_app.yml start
 
 ## 📎 Downloadable Versions
 
-- 📄 Printable HTML Version: [Rekindle Setup Manual (HTML)](sandbox:/mnt/data/rekindle_setup_manual.html)   
-- 📕 PDF Version: [Rekindle Setup Manual (PDF)](sandbox:/mnt/data/rekindle_setup_manual.pdf) 
+- 📄 Printable HTML Version: [Rekindle Setup Manual (HTML)](https://github.com/ElnuraAyase/TestingJ1/raw/main/rekindle_setup_manual.html)
 
-These files provide an easy-to-print and shareable version of the Rekindle Book Store Setup Manual.
+- 📕 PDF Version: [Rekindle Setup Manual (PDF)](https://github.com/ElnuraAyase/TestingJ1/raw/main/rekindle_setup_manual.pdf)
 
 ---
 
