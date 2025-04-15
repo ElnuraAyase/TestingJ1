@@ -311,6 +311,6 @@ Of course! Here's the plain text version you can paste directly at the end of yo
 
 ## 📎 Downloadable Versions
 
-- 📄 Printable HTML Version: rekindle_setup_manual.html  
-- 📕 PDF Version: rekindle_setup_manual.pdf
+- 📄 [Printable HTML Version](rekindle_setup_manual.html)
+- 📕 [PDF Version](rekindle_setup_manual.pdf)
 ---
