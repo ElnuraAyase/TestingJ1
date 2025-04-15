@@ -1,6 +1,5 @@
-Here's the fully merged and optimized manual in Markdown format with integrated troubleshooting at each step:
 
-```markdown
+```
 # Rekindle Book Store Setup Manual
 
 ## Table of Contents
