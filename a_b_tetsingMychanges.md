@@ -305,14 +305,10 @@ docker-compose -f init_rekindle_app.yml start
 
 ---
 
-Thank you for clarifying! Since you're working with a **Markdown document**, here's the correct way to include **active clickable links**. You’ll need to use the following format:
-
----
-
 ## 📎 Downloadable Versions
 
-- 📄 Printable HTML Version: [Rekindle Setup Manual (HTML)](sandbox:/mnt/data/rekindle_setup_manual.html)  
-- 📕 PDF Version: [Rekindle Setup Manual (PDF)](sandbox:/mnt/data/rekindle_setup_manual.pdf)
+- 📄 Printable HTML Version: [Rekindle Setup Manual (HTML)](sandbox:/mnt/data/rekindle_setup_manual.html)   
+- 📕 PDF Version: [Rekindle Setup Manual (PDF)](sandbox:/mnt/data/rekindle_setup_manual.pdf) 
 
 These files provide an easy-to-print and shareable version of the Rekindle Book Store Setup Manual.
 
