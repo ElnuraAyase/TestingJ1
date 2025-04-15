@@ -305,11 +305,4 @@ docker-compose -f init_rekindle_app.yml start
 
 ---
 
-## 📎 Downloadable Versions
-
-- 📄 Printable HTML Version: [Rekindle Setup Manual (HTML)](https://github.com/ElnuraAyase/TestingJ1/raw/main/rekindle_setup_manual.html)  
-- 📕 PDF Version: [Rekindle Setup Manual (PDF)](https://github.com/ElnuraAyase/TestingJ1/raw/main/rekindle_setup_manual.pdf)
-
-
----
 
