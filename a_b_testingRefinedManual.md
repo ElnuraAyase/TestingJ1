@@ -1,4 +1,3 @@
-Here's the fully merged and optimized manual with integrated troubleshooting, structured for clarity and ease of use:
 
 # **Rekindle Book Store Setup Manual**  
 *Complete guide with integrated troubleshooting*
@@ -194,4 +193,3 @@ This manual now:
 4. Provides clear verification steps
 5. Uses consistent formatting for commands
 
-Would you like me to add any specific troubleshooting scenarios or visual aids?
