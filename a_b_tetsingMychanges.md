@@ -305,7 +305,12 @@ docker-compose -f init_rekindle_app.yml start
 
 ---
 
-Let me know if you'd like:
-- A **PDF version**
-- A **printable HTML file**
-- Or help integrating this into a company wiki (Confluence, GitHub Pages, etc.)
+Of course! Here's the plain text version you can paste directly at the end of your document — no Markdown formatting:
+
+---
+
+## 📎 Downloadable Versions
+
+- 📄 Printable HTML Version: rekindle_setup_manual.html  
+- 📕 PDF Version: rekindle_setup_manual.pdf
+---
