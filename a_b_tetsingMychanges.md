@@ -305,12 +305,12 @@ docker-compose -f init_rekindle_app.yml start
 
 ---
 
-Of course! Here's the plain text version you can paste directly at the end of your document — no Markdown formatting:
+## 📎 Downloadable Versions
+
+- 📄 Printable HTML Version: [rekindle_setup_manual.html](sandbox:/mnt/data/rekindle_setup_manual.html)  
+- 📕 PDF Version: [rekindle_setup_manual.pdf](sandbox:/mnt/data/rekindle_setup_manual.pdf)
+
+These files provide an easy-to-print and shareable version of the Rekindle Book Store Setup Manual.
 
 ---
-
-📎 Downloadable Versions
-📄 Printable HTML Version: rekindle_setup_manual.html
-
-📕 PDF Version: rekindle_setup_manual.pdf
 ---
