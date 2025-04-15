@@ -314,5 +314,7 @@ Thank you for clarifying! Since you're working with a **Markdown document**, her
 - 📄 Printable HTML Version: [Rekindle Setup Manual (HTML)](sandbox:/mnt/data/rekindle_setup_manual.html)  
 - 📕 PDF Version: [Rekindle Setup Manual (PDF)](sandbox:/mnt/data/rekindle_setup_manual.pdf)
 
+These files provide an easy-to-print and shareable version of the Rekindle Book Store Setup Manual.
+
 ---
 
