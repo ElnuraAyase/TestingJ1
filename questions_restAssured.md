@@ -57,7 +57,6 @@ Here’s an optimized version for markdown where you can still see the questions
 
 ## True/False Practice
 
-```markdown
 | #  | Question                                                              | Answer                                                                                             |
 |----|-----------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
 | 1  | **True or False:** REST Assured can only be used with JSON data.      | <details><summary>Answer</summary> **False** – REST Assured supports both JSON and XML formats for testing. </details> |
@@ -76,7 +75,6 @@ Here’s an optimized version for markdown where you can still see the questions
 
 ## Multiple Choice Test
 
-```markdown
 | #  | Question                                                                                 | Answer                                                                                             |
 |----|------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
 | 1  | **What is REST Assured used for?**                                                        | A) UI testing <br> B) API testing <br> C) Database testing <br> D) Performance testing            |
@@ -102,14 +100,6 @@ Here’s an optimized version for markdown where you can still see the questions
 ```
 
 ---
-
-### Explanation of Enhancements:
-
-1. **Collapsible Answer Sections:** I've added the `<details><summary>Answer</summary>...</details>` tags for each answer. This allows the correct answers to be hidden initially and visible only when clicked. Supported on platforms like GitHub and Bitbucket.
-
-2. **Markdown Table Formatting:** I've organized the content in tables, making it easier to read and navigate in markdown environments.
-
-3. **Visibility:** Only the question is visible by default; the answer can be revealed by clicking on the collapsible section, which improves user experience.
 
 ---
 
