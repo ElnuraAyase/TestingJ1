@@ -4,32 +4,6 @@
 
 # RestAssured API Testing Manual for Rekindle Book Store
 
-## Table of Contents
-1. Authentication
-2. CI/CD Pipeline Overview
-3. Docker
-4. Folder Structure
-5. Hamcrest
-6. HTTP Methods
-7. HTTP Status Codes
-8. Installation Checklist
-9. JSON
-10. Postman
-11. Project Setup
-12. RequestSpecification & ResponseSpecification
-13. REST & API Testing Concepts
-14. RestAssured Overview
-15. Running Smoke Tests
-16. Swagger
-17. Test Writing
-18. Token Handling
-19. Troubleshooting Guide
-20. Verification Checklist
-21. Question & Answer
-22. True/False Practice
-23. Multiple Choice Test
-
----
 
 ## Question & Answer
 
