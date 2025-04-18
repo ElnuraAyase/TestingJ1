@@ -130,53 +130,17 @@ Think of Postman as a **notepad and magnifying glass**, and RestAssured as a **r
 
 ---
 
-## 4. RestAssured, Docker & Postman Explained
+## 5–12. Sections Available Above
 
-<details>
-<summary>🔧 What is RestAssured?</summary>
-
-A Java library used to test REST APIs. It integrates smoothly with TestNG or JUnit and makes HTTP requests super easy to write:
-```java
-given().baseUri("http://localhost:8080")
-       .when().get("/books")
-       .then().statusCode(200);
-```
-You can validate:
-- Status codes
-- Response bodies
-- Headers, cookies
-- JSON schema, timeouts
-</details>
-
-<details>
-<summary>🐳 What is Docker?</summary>
-
-Docker helps run your entire backend stack in **isolated containers**. For Rekindle, this means:
-- PostgreSQL
-- Kafka
-- Rekindle microservices
-
-All started using `docker-compose` for a reliable and repeatable test environment.
-</details>
-
-<details>
-<summary>📨 What is Postman?</summary>
-
-Postman is a GUI for making HTTP calls to APIs. Use it to:
-- Explore and verify API endpoints
-- Check headers, payloads
-- Save and share requests
-- Generate sample code
-</details>
-
-<details>
-<summary>🔗 How They Work Together</summary>
-
-1. Docker starts Rekindle backend
-2. Postman is used to manually test APIs like `/orders`
-3. RestAssured automates those tests
-4. TestNG runs them as a smoke or regression suite
-</details>
+Refer to sections 5 to 12 using the in-document navigation links above or the Table of Contents for:
+- [5. Project Setup](#5-project-setup)
+- [6. Folder Structure](#6-folder-structure)
+- [7. Writing Your First Test](#7-writing-your-first-test)
+- [8. Running Smoke Tests](#8-running-smoke-tests)
+- [9. Postman for Manual Testing](#9-postman-for-manual-testing)
+- [10. Verification Checklist](#10-verification-checklist)
+- [11. Troubleshooting Guide](#11-troubleshooting-guide)
+- [12. Advanced Topics: Tokens, Swagger, Visual Map](#12-advanced-topics-tokens-swagger-visual-map)
 
 [⬆️ Back to Top](#table-of-contents)
 
