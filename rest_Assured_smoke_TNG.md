@@ -130,17 +130,211 @@ Think of Postman as a **notepad and magnifying glass**, and RestAssured as a **r
 
 ---
 
-## 5–12. Sections Available Above
+## 4. RestAssured, Docker & Postman Explained
 
-Refer to sections 5 to 12 using the in-document navigation links above or the Table of Contents for:
-- [5. Project Setup](#5-project-setup)
-- [6. Folder Structure](#6-folder-structure)
-- [7. Writing Your First Test](#7-writing-your-first-test)
-- [8. Running Smoke Tests](#8-running-smoke-tests)
-- [9. Postman for Manual Testing](#9-postman-for-manual-testing)
-- [10. Verification Checklist](#10-verification-checklist)
-- [11. Troubleshooting Guide](#11-troubleshooting-guide)
-- [12. Advanced Topics: Tokens, Swagger, Visual Map](#12-advanced-topics-tokens-swagger-visual-map)
+### 🔧 What is RestAssured?
+A Java library used to test REST APIs. It integrates smoothly with TestNG or JUnit and makes HTTP requests super easy to write:
+```java
+given().baseUri("http://localhost:8080")
+       .when().get("/books")
+       .then().statusCode(200);
+```
+You can validate:
+- Status codes
+- Response bodies
+- Headers, cookies
+- JSON schema, timeouts
+
+### 🐳 What is Docker?
+Docker helps run your entire backend stack in **isolated containers**. For Rekindle, this means:
+- PostgreSQL
+- Kafka
+- Rekindle microservices
+
+All started using `docker-compose` for a reliable and repeatable test environment.
+
+### 📨 What is Postman?
+Postman is a GUI for making HTTP calls to APIs. Use it to:
+- Explore and verify API endpoints
+- Check headers, payloads
+- Save and share requests
+- Generate sample code
+
+### 🔗 How They Work Together
+1. Docker starts Rekindle backend
+2. Postman is used to manually test APIs like `/orders`
+3. RestAssured automates those tests
+4. TestNG runs them as a smoke or regression suite
+
+[⬆️ Back to Top](#table-of-contents)
+
+---
+
+## 5. Project Setup
+
+### Step 1: Create Folder
+```
+mkdir C:\Projects\rekindle-api-tests
+cd C:\Projects\rekindle-api-tests
+```
+
+### Step 2: Create Maven Project Structure
+```
+src
+ └── test
+     ├── java
+     │   └── com.rekindle.api
+     │         ├── base
+     │         ├── tests
+     │         └── utils
+     └── resources
+```
+
+### Step 3: Add `pom.xml`
+```xml
+<dependencies>
+  <dependency>
+    <groupId>io.rest-assured</groupId>
+    <artifactId>rest-assured</artifactId>
+    <version>5.3.0</version>
+    <scope>test</scope>
+  </dependency>
+  <dependency>
+    <groupId>org.testng</groupId>
+    <artifactId>testng</artifactId>
+    <version>7.9.0</version>
+    <scope>test</scope>
+  </dependency>
+</dependencies>
+```
+
+[⬆️ Back to Top](#table-of-contents)
+
+---
+
+## 6. Folder Structure
+
+```
+rekindle-api-tests/
+├── base/
+│   └── BaseTest.java
+├── tests/
+│   ├── SmokeTests.java
+│   └── OrderServiceTest.java
+├── utils/
+│   └── RestConfig.java
+└── resources/
+```
+
+[⬆️ Back to Top](#table-of-contents)
+
+---
+
+## 7. Writing Your First Test
+
+### BaseTest.java
+```java
+package com.rekindle.api.base;
+
+import io.restassured.RestAssured;
+import org.testng.annotations.BeforeClass;
+
+public class BaseTest {
+    @BeforeClass
+    public void setup() {
+        RestAssured.baseURI = "http://localhost:8181";
+    }
+}
+```
+
+### SmokeTests.java
+```java
+package com.rekindle.api.tests;
+
+import com.rekindle.api.base.BaseTest;
+import org.testng.annotations.Test;
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
+
+public class SmokeTests extends BaseTest {
+
+    @Test
+    public void testOrderServiceHealth() {
+        given()
+        .when()
+            .get("/actuator/health")
+        .then()
+            .statusCode(200)
+            .body("status", equalTo("UP"));
+    }
+}
+```
+
+[⬆️ Back to Top](#table-of-contents)
+
+---
+
+## 8. Running Smoke Tests
+
+```bash
+# Run from IntelliJ or use Maven
+mvn clean test
+```
+
+Make sure Rekindle services are running via Docker:
+```bash
+docker-compose -f init_rekindle_app.yml up -d
+```
+
+[⬆️ Back to Top](#table-of-contents)
+
+---
+
+## 9. Postman for Manual Testing
+
+1. Open Postman
+2. Create a collection "Rekindle APIs"
+3. Add requests like:
+   - GET `http://localhost:8181/orders`
+   - POST `http://localhost:8181/orders` with body
+4. Save and test responses
+5. Export collection for reference or CI
+
+[⬆️ Back to Top](#table-of-contents)
+
+---
+
+## 10. Verification Checklist
+
+- [ ] Docker containers are running (check `docker ps`)
+- [ ] Rekindle app is reachable at `localhost:8181`
+- [ ] `mvn clean test` runs without error
+- [ ] Smoke test passes and status is `UP`
+- [ ] Postman returns expected responses
+
+[⬆️ Back to Top](#table-of-contents)
+
+---
+
+## 11. Troubleshooting Guide
+
+| Problem                      | Solution                                             |
+|-----------------------------|------------------------------------------------------|
+| Test fails with 500 error   | Backend not running or endpoint incorrect            |
+| Connection refused          | Docker containers not started or wrong port          |
+| Status code not 200         | Verify payload, headers, or auth                      |
+| Cannot import RestAssured   | Check Maven dependency, reimport project             |
+| `NullPointerException`      | Base URI missing or test setup skipped               |
+
+[⬆️ Back to Top](#table-of-contents)
+
+---
+
+## 12. Advanced Topics: Tokens, Swagger, Visual Map
+
+- **Token**: A key (often JWT) used to identify and authenticate a user or system.
+- **Swagger**: A tool and format for describing REST APIs. It helps developers test endpoints via Swagger UI.
+- Visual tools like Swagger UI or Postman’s API Explorer give a live view of what APIs are available and how to interact.
 
 [⬆️ Back to Top](#table-of-contents)
 
