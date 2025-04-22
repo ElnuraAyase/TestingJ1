@@ -416,4 +416,75 @@ Imagine you go to a concert:
 
 Let me know if you want to see what the token actually contains or how to generate it!
 
+Awesome question again! Let's break this down both **logically** and **technically**, so you understand not just *what* was done, but *why* it was done that way.
 
+---
+
+## ✅ Why I structured the tests in that specific order:
+
+### 1. **Test order matters when using real data (integration tests)**
+We're testing a **real API** that works with **actual server state** (i.e., it stores data and updates/deletes it). So the order matters a lot to avoid failures like:
+
+- "Trying to update a deleted item" ❌
+- "Trying to delete an item that doesn’t exist" ❌
+
+---
+
+## 🧩 Test Flow: Create ➝ Update ➝ Delete
+
+### **1️⃣ Create (POST)**  
+Creates a **new bookstore** to safely test updates and deletion — without touching existing real data.
+
+### **2️⃣ Update (PUT)**  
+Only makes sense **if the bookstore exists**, which is why it's done *after* creation and *before* deletion.  
+✅ We update the one we just created.
+
+### **3️⃣ Delete (DELETE)**  
+After we're done testing the bookstore (create + update), we delete it to:
+- Clean up the test data
+- Avoid cluttering the database
+- Ensure delete functionality works
+
+---
+
+## 🚫 Why NOT update **after** delete?
+
+### Simple answer:
+> **You can’t update something that doesn’t exist.**
+
+Once a resource is deleted:
+- It’s no longer available via GET
+- PUT (update) will likely return a **404 Not Found**
+- You're testing failure, not the actual update functionality
+
+---
+
+## ✅ Best Practices Applied:
+| Practice | Why It Was Done |
+|---------|------------------|
+| `createdBookstoreId` | Dynamic ID ensures tests are reusable and not hardcoded. |
+| `dependsOnMethods` | Ensures proper sequence and avoids test failures from bad order. |
+| Cleanup with DELETE | Keeps database clean and avoids side effects. |
+| BDD Comments | Makes test intent very clear (esp. for team readability). |
+
+---
+
+## Want Bonus Points? 💡
+
+You could even verify after deletion like:
+```java
+@Test(dependsOnMethods = {"deleteBookStoreById"})
+public void verifyBookStoreIsDeleted() {
+    Response response = given()
+            .contentType(ContentType.JSON)
+            .header("Authorization", "Bearer " + token)
+            .when()
+            .get("/bookstores/" + createdBookstoreId);
+
+    Assert.assertEquals(response.getStatusCode(), 404); // or 410, depending on API
+}
+```
+
+---
+
+Let me know if you'd like to make this even more robust by externalizing the test data or using TestNG groups!
