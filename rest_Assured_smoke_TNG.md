@@ -53,14 +53,16 @@ API (Application Programming Interface) testing validates backend functionality 
 - 401 = Unauthorized
 - 404 = Not Found
 - 500 = Server Error
-✅ 1xx – Informational
+
+
+✅ **1xx – Informational** 
 These mean “Hold on, something is happening”. Rarely used directly by most developers.
 
 100 – Continue (request received, keep going)
 
 101 – Switching Protocols (e.g., upgrading to WebSocket)
 
-✅ 2xx – Success
+✅ **2xx – Success**
 Everything went well — the request was successfully received, understood, and accepted.
 
 200 – OK (standard successful response)
@@ -69,7 +71,7 @@ Everything went well — the request was successfully received, understood, and 
 
 204 – No Content (success, but nothing to return)
 
-✅ 3xx – Redirection
+✅ **3xx – Redirection**
 The client needs to do something else to complete the request.
 
 301 – Moved Permanently (URL changed permanently)
@@ -78,7 +80,7 @@ The client needs to do something else to complete the request.
 
 304 – Not Modified (cached content is still valid)
 
-✅ 4xx – Client Errors
+✅ **4xx – Client Errors**
 The request had an error or was invalid. It's the client's fault.
 
 400 – Bad Request (invalid syntax or parameters)
@@ -91,7 +93,7 @@ The request had an error or was invalid. It's the client's fault.
 
 409 – Conflict (conflicting resource state)
 
-✅ 5xx – Server Errors
+✅ **5xx – Server Errors**
 Something went wrong on the server's end.
 
 500 – Internal Server Error (generic server error)
