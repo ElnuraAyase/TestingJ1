@@ -372,3 +372,48 @@ public void updateProductById() {
 
 ## Want to try DELETE next? Or maybe test with invalid data (like missing fields)?  
 Let me know — we can go one by one!
+Great question! Let's break it down simply:
+
+---
+
+### 🔐 What is **Bearer**?
+
+**Bearer** refers to a **type of authentication scheme** that uses **Bearer Tokens**.
+
+In HTTP requests, **"Bearer"** is a keyword used in the `Authorization` header to specify that the client is using a token to access a resource.
+
+---
+
+### 📦 Format in the Request:
+```http
+Authorization: Bearer <your_token_here>
+```
+
+So in your code:
+```java
+.header("Authorization", "Bearer " + token)
+```
+This means:
+> "Hey API! I’m sending a token to prove who I am. Please let me access the protected data."
+
+---
+
+### 🛡️ Why is it used?
+
+1. **Security**: It verifies that the request comes from someone who is allowed to access the data (like a logged-in user).
+2. **Stateless**: The server doesn’t need to remember session info — the token itself holds the identity and permissions.
+3. **Used in OAuth 2.0**: Very common in modern APIs that follow OAuth 2.0 or JWT standards.
+
+---
+
+### ✅ Real-life analogy:
+Imagine you go to a concert:
+- Your **ticket** = Bearer token
+- **"Bearer"** = You're saying "I'm holding a valid ticket"
+- **Security (API)** checks your ticket and lets you in (or not)
+
+---
+
+Let me know if you want to see what the token actually contains or how to generate it!
+
+
