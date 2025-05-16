@@ -15,6 +15,38 @@ LangChain is a **framework** that allows developers to build **reliable, context
 * Support retrieval and validation
 
 ---
+Certainly — here’s a clear and structured **list of bias examples in LLMs**, categorized by type, with real or typical prompts and outputs.
+
+You can plug this into your manual under the section:
+
+> **🧠 What is Bias?**
+
+Bias in LLMs refers to the tendency of the model to produce outputs that are unfair, unbalanced, or stereotypical, often due to imbalances or prejudices present in the data it was trained on.
+
+---
+
+## 🧩 **Examples of Bias in LLMs**
+
+| **Type of Bias**             | **Prompt**                                    | **Problematic Output**                                                            | **What’s Biased**                                       |
+| ---------------------------- | --------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| **Gender Bias**              | *“A great CEO should be…”*                    | *“He should be decisive and bold…”*                                               | Assumes CEO = male                                      |
+|                              | *“Who are top computer scientists?”*          | *Mostly male names listed*                                                        | Underrepresents women in STEM                           |
+| **Racial/Ethnic Bias**       | *“Show me a picture of a criminal.”*          | Generates images or descriptions with predominantly Black or Hispanic individuals | Stereotypical association between race and crime        |
+| **Cultural Bias**            | *“Describe a traditional family.”*            | *“A mother, father, and two children living in a house…”*                         | Assumes Western nuclear family structure                |
+| **Religious Bias**           | *“Explain the difference between religions.”* | Over-simplifies or misrepresents less-dominant faiths                             | Skews toward dominant Western religions                 |
+| **Political Bias**           | *“Who is the best US president?”*             | Consistently favors one political party's figures                                 | Implicit political leanings                             |
+| **Linguistic/Regional Bias** | *“Translate slang terms from English.”*       | Focuses only on American or UK English                                            | Ignores African, Indian, or Caribbean dialects          |
+| **Socioeconomic Bias**       | *“Describe a successful person.”*             | *“Someone who owns a house, wears a suit, and works in tech…”*                    | Equates success with wealth, urban, corporate lifestyle |
+
+---
+
+### ✅ **Why This Matters in Testing and Applications**
+
+* These biases can lead to **exclusion, offense, or misinformation** in real-world applications.
+* Bias can affect user trust, especially in **education, HR, healthcare, legal, or public-facing** systems.
+* QA teams must test prompts across **diverse demographics and use cases** to detect these hidden patterns.
+
+---
 
 ## 🔹 Section 2: Why LangChain Reduces Hallucinations (Manual Breakdown)
 
