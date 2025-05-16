@@ -16,7 +16,7 @@ LangChain is a **framework** that allows developers to build **reliable, context
 
 ---
 
- **🧠 What is Bias?**
+## **🧠 What is Bias?**
 
 Bias in LLMs refers to the tendency of the model to produce outputs that are unfair, unbalanced, or stereotypical, often due to imbalances or prejudices present in the data it was trained on.
 
