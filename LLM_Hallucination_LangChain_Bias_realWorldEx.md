@@ -15,11 +15,8 @@ LangChain is a **framework** that allows developers to build **reliable, context
 * Support retrieval and validation
 
 ---
-Certainly — here’s a clear and structured **list of bias examples in LLMs**, categorized by type, with real or typical prompts and outputs.
 
-You can plug this into your manual under the section:
-
-> **🧠 What is Bias?**
+ **🧠 What is Bias?**
 
 Bias in LLMs refers to the tendency of the model to produce outputs that are unfair, unbalanced, or stereotypical, often due to imbalances or prejudices present in the data it was trained on.
 
